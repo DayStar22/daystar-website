@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High THC Doesn't Mean Better Weed — DayStar Consulting</title>
+  <meta name="description" content="The cannabis industry sells potency by THC percentage alone. Here's why that metric is misleading, what actually drives effect, and what growers should optimize instead.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .blog-post-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .blog-post-back { display: inline-block; color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.88rem; text-decoration: none; margin-bottom: 2rem; }
+    .blog-post-back:hover { text-decoration: underline; }
+    .blog-post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .blog-post-tag { background: rgba(212,175,55,0.15); color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .blog-post-wrap h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; color: #F4F1EA; line-height: 1.2; margin-bottom: 1.5rem; }
+    .blog-post-wrap p { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #F4F1EA; margin-bottom: 1.25rem; }
+    .blog-post-wrap h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: #D4AF37; margin: 2rem 0 1rem; }
+    .blog-post-wrap h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.15rem; color: #F4F1EA; margin: 1.5rem 0 0.75rem; }
+    .blog-post-wrap ul, .blog-post-wrap ol { font-family: 'Inter', sans-serif; color: #F4F1EA; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .blog-post-wrap li { margin-bottom: 0.5rem; line-height: 1.65; }
+    .blog-post-wrap strong { color: #D4AF37; }
+    .blog-post-wrap em { font-style: italic; }
+    .blog-post-cta { background: rgba(212,175,55,0.1); border-top: 2px solid #D4AF37; padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
+    .blog-post-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #F4F1EA; margin-bottom: 1rem; }
+    .blog-post-cta a { display: inline-block; background: #D4AF37; color: #1B1F1C; font-family: 'Inter', sans-serif; font-weight: 700; padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; }
+    .blog-post-cta a:hover { background: #E8C850; }
+    @media(max-width:600px){ .blog-post-wrap h1 { font-size: 1.6rem; } }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+<main class="blog-post-wrap">
+  <a href="blog.html" class="blog-post-back">&larr; Back to Blog</a>
+
+  <div class="blog-post-tags">
+    <span class="blog-post-tag">Myths</span>
+    <span class="blog-post-tag">THC</span>
+  </div>
+
+  <h1>High THC Doesn't Mean Better Weed &mdash; The Potency Lie the Industry Sells You</h1>
+
+  <p>Walk into any dispensary and watch what happens. Budtenders point customers to the top shelf based on one number: THC percentage. Menus are sorted by it. Pricing is built around it. The entire retail cannabis economy has been reduced to a single metric that, on its own, tells you almost nothing about how a cultivar will actually hit.</p>
+
+  <p>This is one of the most expensive myths in the industry &mdash; and it's costing growers margin, costing consumers experience, and propping up a testing ecosystem with serious credibility problems.</p>
+
+  <h2>The Entourage Effect Is Not a Buzzword</h2>
+
+  <p>In 1998, Dr. Raphael Mechoulam and Dr. Shimon Ben-Shabat published research describing what they called the "entourage effect" &mdash; the principle that cannabinoids, terpenes, and flavonoids work synergistically. THC doesn't act alone. It never has. The receptor binding affinity of THC is modulated by the full chemical profile surrounding it.</p>
+
+  <p><strong>Myrcene</strong> increases blood-brain barrier permeability, accelerating onset. <strong>Linalool</strong> provides anxiolytic effects that counterbalance THC-induced anxiety. <strong>Beta-caryophyllene</strong> binds directly to CB2 receptors, adding anti-inflammatory action that THC alone doesn't provide. <strong>Limonene</strong> elevates serotonin and dopamine levels, shaping the euphoric character of a high.</p>
+
+  <p>A flower testing at 18% THC with 2.8% total terpenes and a diverse cannabinoid profile &mdash; including CBG, CBC, and trace THCV &mdash; will consistently outperform a 32% THC cultivar with 0.8% total terpenes and a flat cannabinoid profile. This isn't opinion. This is pharmacology.</p>
+
+  <h2>Why 30%+ THC Flower Often Underperforms</h2>
+
+  <p>When growers chase maximum THC, they make trade-offs whether they realize it or not. Genetics selected purely for cannabinoid synthesis often produce monoterpene-dominant profiles &mdash; heavy on myrcene, light on everything else. The result is flower that tests high but delivers a one-dimensional, sedative experience that burns out fast.</p>
+
+  <p>Worse, the aggressive nutrient regimens and environmental pushes required to max out THC often degrade terpene retention at harvest. Terpenes are volatile. They evaporate at lower temperatures than cannabinoids. A dry room running at 65&deg;F and 55% RH will preserve terpenes. A dry room running at 72&deg;F and 45% RH &mdash; which many commercial operations default to for speed &mdash; will not.</p>
+
+  <p>The grower hits 30% on the COA. The consumer gets a harsh, flat smoke with minimal nose and a short-lived high. Everybody loses.</p>
+
+  <h2>The Dirty Secret of Lab Testing</h2>
+
+  <p>Here's what the industry doesn't talk about openly: <strong>THC inflation in testing labs is rampant.</strong> A 2020 study in <em>PLOS ONE</em> sent identical flower samples to multiple licensed labs in the same state. Results varied by as much as 15 percentage points. The same bud tested at 18% in one lab and 33% in another.</p>
+
+  <p>Why? Labs compete for cultivator business. A lab that consistently returns higher numbers gets more clients. This creates a systemic incentive to inflate. Some labs use methodological choices &mdash; like how they homogenize samples or calibrate instruments &mdash; that skew results upward without technically falsifying data.</p>
+
+  <p>Several states have begun cracking down. Michigan pulled licenses. California implemented proficiency testing. But the fundamental problem remains: when the market rewards a single number, every actor in the supply chain is incentivized to game that number.</p>
+
+  <h2>What Growers Should Actually Optimize</h2>
+
+  <p>If you're growing for quality &mdash; real quality, the kind that builds a brand and generates repeat customers &mdash; stop chasing THC and start measuring what matters:</p>
+
+  <ul>
+    <li><strong>Total terpene content.</strong> Target 2.0% minimum, 3.0%+ for top-shelf. Track your terpene-to-THC ratio. A ratio above 0.10 is where flower starts to differentiate.</li>
+    <li><strong>Terpene diversity.</strong> A profile with 5-7 terpenes above 0.1% each creates complexity. Monoterpene-only profiles (just myrcene and pinene) create flat experiences.</li>
+    <li><strong>Minor cannabinoid presence.</strong> CBG above 0.5%, any measurable CBC or THCV &mdash; these compounds shape the effect far more than an extra 3% THC.</li>
+    <li><strong>Cure and dry conditions.</strong> A 14-day dry at 60&deg;F / 60% RH followed by a 21+ day cure in sealed containers preserves the volatile terpenes that drive experience. Shortcuts here destroy everything you built in the grow room.</li>
+    <li><strong>Ash color and burn quality.</strong> White ash, even burn, oil ring on the paper &mdash; these are downstream indicators of proper flush, cure, and overall plant health. No lab test captures them, but consumers notice immediately.</li>
+  </ul>
+
+  <h2>The Bottom Line</h2>
+
+  <p>THC percentage is one data point in a complex chemical system. Treating it as the only data point is like judging a wine by alcohol content alone. A 15% ABV wine isn't automatically better than a 12% one &mdash; and any sommelier would laugh at the suggestion.</p>
+
+  <p>The cannabis industry needs to grow past this. Growers who understand the full picture &mdash; who dial in their environment, preserve their terpenes, and grow for effect rather than a lab number &mdash; are the ones building brands that last. Everyone else is in a race to the bottom, chasing a metric that doesn't mean what they think it means.</p>
+
+  <div class="blog-post-cta">
+    <h3>Know exactly where your grow stands. Get your DayStar Assessment &rarr;</h3>
+    <a href="assessment.html">Get Your Assessment</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Inter',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html#book">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://www.instagram.com/daystar_consulting" target="_blank" rel="noopener">&#128247; Instagram</a></li><li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">&#120143; Twitter</a></li><li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">&#128216; Facebook</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

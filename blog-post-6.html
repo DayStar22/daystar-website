@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flushing Before Harvest: The Ritual That Science Doesn't Support — DayStar Blog</title>
+  <meta name="description" content="The cannabis flushing debate, settled with data. What the Bugbee research found, why substrate type matters more than you think, and what a real pre-harvest protocol looks like.">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .blog-post-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .blog-post-back { display: inline-block; color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.88rem; text-decoration: none; margin-bottom: 2rem; }
+    .blog-post-back:hover { text-decoration: underline; }
+    .blog-post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .blog-post-tag { background: rgba(212,175,55,0.15); color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .blog-post-wrap h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; color: #F4F1EA; line-height: 1.2; margin-bottom: 1.5rem; }
+    .blog-post-wrap p { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #F4F1EA; margin-bottom: 1.25rem; }
+    .blog-post-wrap h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: #D4AF37; margin: 2rem 0 1rem; }
+    .blog-post-wrap h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.15rem; color: #F4F1EA; margin: 1.5rem 0 0.75rem; }
+    .blog-post-wrap ul, .blog-post-wrap ol { font-family: 'Inter', sans-serif; color: #F4F1EA; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .blog-post-wrap li { margin-bottom: 0.5rem; line-height: 1.65; }
+    .blog-post-wrap strong { color: #D4AF37; }
+    .blog-post-wrap em { font-style: italic; }
+    .blog-post-cta { background: rgba(212,175,55,0.1); border-top: 2px solid #D4AF37; padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
+    .blog-post-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #F4F1EA; margin-bottom: 1rem; }
+    .blog-post-cta a { display: inline-block; background: #D4AF37; color: #1B1F1C; font-family: 'Inter', sans-serif; font-weight: 700; padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; }
+    .blog-post-cta a:hover { background: #E8C850; }
+    @media(max-width:600px){ .blog-post-wrap h1 { font-size: 1.6rem; } }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52" fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105" fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79" fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121" fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68" fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+<main class="blog-post-wrap">
+  <a href="blog.html" class="blog-post-back">&larr; Back to Blog</a>
+
+  <div class="blog-post-tags">
+    <span class="blog-post-tag">Myths</span>
+    <span class="blog-post-tag">Harvest</span>
+  </div>
+
+  <h1>Flushing Before Harvest: The Ritual That Science Doesn&rsquo;t Support</h1>
+
+  <p>Few topics in cannabis cultivation generate more heated debate than pre-harvest flushing &mdash; the practice of feeding plants plain water (or a "flushing agent") for the final 1&ndash;2 weeks before chop. Proponents swear it produces a smoother smoke, cleaner ash, and better flavor. They'll tell you that flushing "forces the plant to use up stored nutrients," removing harsh mineral salts from the flower tissue.</p>
+
+  <p>The problem is that peer-reviewed research doesn't support any of these claims. And worse, aggressive flushing during the final weeks of flower may actually be costing you terpenes, trichome maturity, and yield.</p>
+
+  <h2>What the Proponents Claim</h2>
+
+  <p>The flushing argument rests on a few core assumptions: first, that mineral nutrients accumulate in flower tissue during feeding; second, that running plain water through the substrate removes those minerals from the plant; and third, that residual minerals cause the "harsh" or "chemical" taste associated with poorly grown cannabis.</p>
+
+  <p>Each of these assumptions has problems. Plants don't store ionic minerals in flower tissue the way you'd fill a bucket. Nutrients are metabolized into organic compounds &mdash; amino acids, proteins, chlorophyll, sugars, terpenes, cannabinoids. Once nitrogen becomes part of a protein molecule, flushing the root zone with plain water doesn't reverse that biochemistry. You can't un-cook an egg.</p>
+
+  <h2>What the Research Actually Found</h2>
+
+  <p>The most cited study on this topic was conducted by Dr. Bruce Bugbee's lab at Utah State University, published in collaboration with RX Green Technologies in 2020. The study grew cannabis (cultivar 'Cherry Diesel') in a controlled environment and compared four flush durations: 0, 7, 10, and 14 days of plain water before harvest.</p>
+
+  <p>The results were unambiguous. <strong>There was no significant difference in mineral content of the flower tissue across any flush duration.</strong> Plants flushed for 14 days had statistically identical levels of nitrogen, phosphorus, potassium, calcium, magnesium, sulfur, iron, manganese, and zinc compared to plants that received full-strength nutrients right up to harvest day.</p>
+
+  <p>THC and terpene levels were also statistically equivalent across all treatments. In a blind smoke test conducted as part of the study, a panel of evaluators could not reliably distinguish between flushed and unflushed flower in terms of smoothness, flavor, or ash color.</p>
+
+  <p>The study did find one measurable difference: <strong>the unflushed plants produced slightly higher yields.</strong> Plants that received nutrients through harvest maintained active photosynthesis and biomass production during the final two weeks &mdash; a period when flushed plants were essentially being starved.</p>
+
+  <h2>Substrate Type Matters More Than You Think</h2>
+
+  <p>Here's where the nuance lives. The Bugbee study was conducted in a peat-based substrate &mdash; a medium with meaningful cation exchange capacity (CEC). Peat, coco coir, and soil all have the ability to buffer and hold nutrients in the root zone. In these substrates, even if you run plain water, the medium continues to release stored nutrients to the plant for days or weeks.</p>
+
+  <p>Rockwool and deep water culture (DWC) are different. These substrates have minimal or zero CEC. When you stop feeding in rockwool, the nutrient supply drops almost immediately. In DWC, it drops to zero the moment you swap the reservoir. For these systems, an abrupt nutrient cutoff two weeks before harvest creates genuine stress &mdash; not a controlled "finish," but a nutrient deficiency that forces the plant to cannibalize fan leaves and redirect resources away from flower production.</p>
+
+  <p>If you're growing in rockwool or hydro and you want to reduce nutrient input before harvest, <strong>a gradual taper over 5&ndash;7 days to 50% strength is far more productive than a hard flush to zero.</strong> You maintain enough nutrition to support late-stage metabolic activity without the risk of salt buildup that some hydro growers legitimately experience.</p>
+
+  <h2>How Over-Flushing Hurts Late-Stage Terpene Production</h2>
+
+  <p>Terpene biosynthesis is metabolically expensive. The MEP pathway (methylerythritol phosphate pathway), which produces monoterpenes like myrcene, limonene, and pinene, requires ATP and NADPH &mdash; both products of active photosynthesis. The mevalonate pathway, responsible for sesquiterpenes like caryophyllene and humulene, also depends on active carbon fixation.</p>
+
+  <p>When you starve a plant of nitrogen and other essential elements during the final two weeks, you're throttling photosynthetic capacity precisely when the plant should be finishing terpene and cannabinoid production at peak intensity. Chlorophyll degrades, leaves yellow, and the plant's metabolic engine loses power. Those yellow leaves that flush advocates point to as a sign of "the plant using up its stored nutrients" are actually a sign of <strong>nitrogen deficiency and accelerated senescence</strong> &mdash; the plant is dying faster than it needs to.</p>
+
+  <p>Some degree of late-flower senescence is natural and beneficial. The plant naturally redirects mobile nutrients from fan leaves to flower sites. But forcing that process two weeks early by cutting off all nutrition doesn't improve flower quality &mdash; it truncates the final phase of active terpene synthesis.</p>
+
+  <h2>A Data-Driven Pre-Harvest Protocol</h2>
+
+  <p>Instead of flushing rituals, here's what the data supports:</p>
+
+  <ul>
+    <li><strong>Continue feeding through harvest</strong> in soil, peat, and coco. The medium's CEC provides a natural buffer. Reduce to 50&ndash;75% strength in the final week if you prefer, but don't go to zero.</li>
+    <li><strong>Taper gradually in rockwool and hydro.</strong> Drop to 75% strength at day 7 pre-harvest, 50% at day 3&ndash;4. Never hard-flush DWC or NFT systems.</li>
+    <li><strong>Monitor runoff EC.</strong> If your runoff EC is climbing above 3.0+ in the final weeks, you have a salt accumulation issue that predates the flush window. Fix your fertigation strategy for the entire cycle, not just the last two weeks.</li>
+    <li><strong>Focus on proper drying and curing.</strong> The "harshness" that growers attribute to unflushed flower is almost always caused by inadequate drying (too fast, too warm) and insufficient curing. A slow dry at 60&deg;F / 60% RH for 10&ndash;14 days followed by a proper 2&ndash;4 week cure does more for smoke quality than any flush protocol ever will.</li>
+    <li><strong>Track trichome maturity.</strong> Harvest timing based on trichome color (mostly cloudy with 10&ndash;20% amber for peak THC) matters infinitely more than how many days you ran plain water.</li>
+  </ul>
+
+  <p>The flushing ritual persists because it's simple, it feels like you're doing something, and it's been repeated so many times that it carries the weight of received wisdom. But in cultivation, received wisdom is often just unchallenged habit. The data says feed your plants, dry them properly, cure them patiently, and stop overthinking the last two weeks.</p>
+
+  <div class="blog-post-cta">
+    <h3>Know exactly where your grow stands.</h3>
+    <a href="assessment.html">Get your DayStar Assessment &rarr;</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52" fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105" fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79" fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121" fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68" fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Inter',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html#book">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://www.instagram.com/daystar_consulting" target="_blank" rel="noopener">📷 Instagram</a></li><li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">𝕏 Twitter</a></li><li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">📘 Facebook</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

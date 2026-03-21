@@ -1,0 +1,69 @@
+========================================================
+  DayStar Email List — Google Sheets Setup Instructions
+========================================================
+
+Your website forms submit email signups to a Google Apps Script
+webhook, which appends each submission as a row in a Google Sheet.
+
+Follow these 6 steps to activate:
+
+────────────────────────────────────────────────────────
+
+1. Go to https://sheets.google.com and create a new spreadsheet.
+   Name it "DayStar Email List".
+   In Row 1, add these column headers:
+     A: Timestamp | B: Name | C: Email | D: Message | E: Source
+
+2. Go to Extensions > Apps Script.
+   This opens the script editor for your spreadsheet.
+
+3. Delete any existing code in the editor and paste this
+   doPost() function:
+
+────────────────── COPY BELOW THIS LINE ──────────────────
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+
+    sheet.appendRow([
+      data.timestamp || new Date().toISOString(),
+      data.name      || '',
+      data.email     || '',
+      data.message   || '',
+      data.source    || ''
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+────────────────── COPY ABOVE THIS LINE ──────────────────
+
+4. Click Deploy > New Deployment.
+   - Click the gear icon and select "Web app".
+   - Set "Execute as" to "Me".
+   - Set "Who has access" to "Anyone".
+   - Click Deploy.
+
+5. Authorize the script when prompted (review permissions, allow).
+   Copy the Web App URL that appears after deployment.
+
+6. In your website code (script.js), find this line:
+
+     var WEBHOOK_URL = 'REPLACE_WITH_APPS_SCRIPT_URL';
+
+   Replace REPLACE_WITH_APPS_SCRIPT_URL with the URL you copied
+   in Step 5. Save the file. Your forms are now live.
+
+────────────────────────────────────────────────────────
+
+That's it. Every form submission will now appear as a new row
+in your "DayStar Email List" Google Sheet.

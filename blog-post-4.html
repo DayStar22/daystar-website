@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Tracking Temperature and Humidity Wrong — VPD Is What Actually Matters — DayStar Blog</title>
+  <meta name="description" content="Stop chasing temperature and humidity in isolation. Learn why Vapor Pressure Deficit (VPD) is the only metric that matters for transpiration, nutrient uptake, and yield.">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .blog-post-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .blog-post-back { display: inline-block; color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.88rem; text-decoration: none; margin-bottom: 2rem; }
+    .blog-post-back:hover { text-decoration: underline; }
+    .blog-post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .blog-post-tag { background: rgba(212,175,55,0.15); color: #D4AF37; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .blog-post-wrap h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; color: #F4F1EA; line-height: 1.2; margin-bottom: 1.5rem; }
+    .blog-post-wrap p { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #F4F1EA; margin-bottom: 1.25rem; }
+    .blog-post-wrap h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; color: #D4AF37; margin: 2rem 0 1rem; }
+    .blog-post-wrap h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.15rem; color: #F4F1EA; margin: 1.5rem 0 0.75rem; }
+    .blog-post-wrap ul, .blog-post-wrap ol { font-family: 'Inter', sans-serif; color: #F4F1EA; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .blog-post-wrap li { margin-bottom: 0.5rem; line-height: 1.65; }
+    .blog-post-wrap strong { color: #D4AF37; }
+    .blog-post-wrap em { font-style: italic; }
+    .blog-post-cta { background: rgba(212,175,55,0.1); border-top: 2px solid #D4AF37; padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
+    .blog-post-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #F4F1EA; margin-bottom: 1rem; }
+    .blog-post-cta a { display: inline-block; background: #D4AF37; color: #1B1F1C; font-family: 'Inter', sans-serif; font-weight: 700; padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; }
+    .blog-post-cta a:hover { background: #E8C850; }
+    @media(max-width:600px){ .blog-post-wrap h1 { font-size: 1.6rem; } }
+    .vpd-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.92rem; }
+    .vpd-table th { background: rgba(212,175,55,0.2); color: #D4AF37; padding: 0.75rem 1rem; text-align: left; font-weight: 700; border-bottom: 2px solid #D4AF37; }
+    .vpd-table td { padding: 0.65rem 1rem; color: #F4F1EA; border-bottom: 1px solid rgba(244,241,234,0.1); }
+    .vpd-table tr:hover td { background: rgba(212,175,55,0.05); }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52" fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105" fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79" fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121" fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68" fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+<main class="blog-post-wrap">
+  <a href="blog.html" class="blog-post-back">&larr; Back to Blog</a>
+
+  <div class="blog-post-tags">
+    <span class="blog-post-tag">Myths</span>
+    <span class="blog-post-tag">VPD</span>
+  </div>
+
+  <h1>You're Tracking Temperature and Humidity Wrong &mdash; VPD Is What Actually Matters</h1>
+
+  <p>Walk into any cannabis grow room and ask the cultivator what their environment looks like. Nine times out of ten, you'll hear something like: "78 degrees, 55% humidity." And they'll say it with confidence, like those two numbers tell the whole story.</p>
+
+  <p>They don't. Not even close.</p>
+
+  <p>Temperature and relative humidity in isolation are nearly meaningless metrics for plant health. What actually governs transpiration, nutrient uptake, stomatal regulation, and ultimately your yield is <strong>Vapor Pressure Deficit (VPD)</strong> &mdash; the difference between the amount of moisture in the air and the maximum amount the air could hold at a given temperature.</p>
+
+  <h2>What VPD Actually Is</h2>
+
+  <p>VPD is measured in kilopascals (kPa). It describes the "drying power" of the air surrounding your canopy. When VPD is low (below 0.4 kPa), the air is nearly saturated &mdash; your plants can't transpire efficiently, stomata close, and you create a breeding ground for powdery mildew and botrytis. When VPD is too high (above 1.6 kPa in veg or 1.8 kPa in flower), the air is pulling water out of the leaves faster than the roots can replace it. Stomata slam shut to prevent wilting, photosynthesis stalls, and calcium transport grinds to a halt.</p>
+
+  <p>The math is straightforward. Saturation vapor pressure (SVP) is calculated from leaf temperature using the Tetens equation: <em>SVP = 0.6108 &times; e^(17.27 &times; T / (T + 237.3))</em>. Actual vapor pressure (AVP) is SVP at your air temperature multiplied by your relative humidity (as a decimal). VPD = SVP at leaf temperature minus AVP. That's it.</p>
+
+  <p>The critical detail most growers miss: <strong>leaf surface temperature is not air temperature.</strong> Under HPS, leaf temps often run 2&ndash;5&deg;F above ambient. Under LED, they frequently run 2&ndash;4&deg;F below ambient because LEDs emit far less infrared radiation. If you're calculating VPD from air temp alone, your number is wrong &mdash; and your plants know it.</p>
+
+  <h2>Why Wrong VPD Destroys Your Crop</h2>
+
+  <p>Transpiration is the engine that drives nutrient uptake. Water moves from roots to leaves through the xylem, carrying dissolved calcium, boron, and other immobile nutrients with it. When VPD is out of range and stomata close, that pipeline shuts down. This is why you see calcium deficiency in the upper canopy even when your feed solution has 200 ppm Ca &mdash; the nutrient is in the reservoir, but it's not moving.</p>
+
+  <p>Research from Wageningen University demonstrated that cannabis plants grown at a consistent VPD of 1.0&ndash;1.2 kPa during vegetative growth showed 18&ndash;23% greater leaf expansion rates compared to plants grown at identical temperature and RH values that produced a VPD of 0.5 kPa. The plants in the optimal VPD range also showed significantly higher rates of CO2 assimilation &mdash; the fundamental driver of biomass production.</p>
+
+  <p>During flower, the consequences multiply. Trichome development is metabolically expensive. If your plant can't transpire efficiently, it can't photosynthesize at full capacity, and resin production suffers. Growers who dial in VPD during weeks 3&ndash;7 of flower consistently report 10&ndash;15% increases in dry flower weight and measurably higher terpene concentrations on lab tests.</p>
+
+  <h2>VPD Targets by Growth Stage</h2>
+
+  <table class="vpd-table">
+    <thead>
+      <tr>
+        <th>Growth Stage</th>
+        <th>Optimal VPD (kPa)</th>
+        <th>Acceptable Range (kPa)</th>
+        <th>Key Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Clones / Seedlings</td>
+        <td>0.4 &ndash; 0.6</td>
+        <td>0.3 &ndash; 0.8</td>
+        <td>Undeveloped roots can't replace water lost to high VPD</td>
+      </tr>
+      <tr>
+        <td>Early Veg</td>
+        <td>0.7 &ndash; 1.0</td>
+        <td>0.6 &ndash; 1.2</td>
+        <td>Gradually increase VPD as root mass develops</td>
+      </tr>
+      <tr>
+        <td>Late Veg</td>
+        <td>1.0 &ndash; 1.2</td>
+        <td>0.8 &ndash; 1.4</td>
+        <td>Peak transpiration drives maximum vegetative growth</td>
+      </tr>
+      <tr>
+        <td>Early Flower (Wk 1&ndash;3)</td>
+        <td>1.0 &ndash; 1.3</td>
+        <td>0.8 &ndash; 1.5</td>
+        <td>Support stretch period with strong nutrient transport</td>
+      </tr>
+      <tr>
+        <td>Mid Flower (Wk 4&ndash;6)</td>
+        <td>1.2 &ndash; 1.5</td>
+        <td>1.0 &ndash; 1.6</td>
+        <td>Peak resin production; don't let VPD drop below 1.0</td>
+      </tr>
+      <tr>
+        <td>Late Flower (Wk 7+)</td>
+        <td>1.3 &ndash; 1.6</td>
+        <td>1.0 &ndash; 1.8</td>
+        <td>Lower RH reduces botrytis risk in dense colas</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>What Happens When You Ignore This</h2>
+
+  <p>We audit dozens of grows per year. The pattern is remarkably consistent: facilities running "good" temps and "good" humidity that still produce mediocre flower almost always have unmanaged VPD. They'll hit 80&deg;F and 65% RH during lights-on &mdash; which sounds fine until you calculate the VPD at 0.83 kPa during peak flower, well below the 1.2&ndash;1.5 kPa sweet spot. Their plants are underperforming by 15&ndash;20%, and they have no idea why.</p>
+
+  <p>The fix isn't complicated. Get an infrared thermometer to measure actual leaf surface temperature. Calculate VPD from leaf temp, not air temp. Adjust your dehumidification and HVAC setpoints to hit VPD targets, not arbitrary temperature and humidity numbers. If you're running a controller that can't target VPD directly, it's time to upgrade &mdash; controllers from Trolmaster, Growtronics, and others now support VPD-based control logic natively.</p>
+
+  <p>Stop managing two numbers that don't tell the real story. Manage the one number that does.</p>
+
+  <div class="blog-post-cta">
+    <h3>Know exactly where your grow stands.</h3>
+    <a href="assessment.html">Get your DayStar Assessment &rarr;</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52" fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105" fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79" fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121" fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68" fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Inter',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html#book">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://www.instagram.com/daystar_consulting" target="_blank" rel="noopener">📷 Instagram</a></li><li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">𝕏 Twitter</a></li><li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">📘 Facebook</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

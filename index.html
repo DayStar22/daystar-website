@@ -11,6 +11,7 @@
   <meta property="og:image"       content="<!-- TODO: OG image URL -->">
   <meta property="og:url"         content="<!-- TODO: Production URL -->">
   <meta name="twitter:card"       content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -80,6 +81,7 @@
      HERO
 ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
+  <canvas id="hero-particles"></canvas>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
@@ -340,65 +342,57 @@
   <div class="container">
     <div class="section-header">
       <span class="section-eyebrow">Why DayStar</span>
-      <h2>How We Compare</h2>
-      <p>Not all cultivation guidance is created equal. Here's how the DayStar Assessment stacks up against the alternatives.</p>
+      <h2>Stop Guessing. Start Scoring.</h2>
+      <p>Here's exactly what you get with DayStar — versus everything else you've tried.</p>
     </div>
-    <div class="compare-table-wrap">
-      <table class="compare-table" role="table" aria-label="DayStar comparison table">
-        <thead>
-          <tr>
-            <th scope="col" style="text-align:left;">Feature</th>
-            <th scope="col" class="col-daystar">DayStar Assessment</th>
-            <th scope="col">YouTube / Forums</th>
-            <th scope="col">Paid Consultant</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Scored rubric (0–100)</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-          </tr>
-          <tr>
-            <td>Specific to your grow setup</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-            <td><span class="cmp-yes">&#10003;</span></td>
-          </tr>
-          <tr>
-            <td>Delivered within 24 hours</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-part">Instant but generic</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-          </tr>
-          <tr>
-            <td>Expert-reviewed output</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-part">Varies widely</span></td>
-            <td><span class="cmp-yes">&#10003;</span></td>
-          </tr>
-          <tr>
-            <td>Ranked, prioritized recommendations</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-            <td><span class="cmp-part">Sometimes</span></td>
-          </tr>
-          <tr>
-            <td>One-time flat price</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-yes">Free</span></td>
-            <td><span class="cmp-no">$500–$2,000+</span></td>
-          </tr>
-          <tr>
-            <td>Personal follow-up option</td>
-            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
-            <td><span class="cmp-no">&#10007;</span></td>
-            <td><span class="cmp-yes">&#10003;</span></td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div class="compare-cards">
+      <!-- Column 1: YouTube & Forums -->
+      <div class="compare-card">
+        <div class="compare-card__header">
+          <div class="compare-card__title">YouTube &amp; Forums</div>
+          <span class="compare-card__badge">Free But Blind</span>
+        </div>
+        <div class="compare-card__row"><span class="compare-card__label">Scored 0–100 rubric</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Specific to your exact setup</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Delivered within 24 hours</span><span class="compare-card__value compare-card__value--partial">Instant but generic</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Expert-reviewed output</span><span class="compare-card__value compare-card__value--partial">Varies</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Ranked priority recommendations</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Flat one-time price</span><span class="compare-card__value compare-card__value--partial">Free</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Personal follow-up option</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+      </div>
+
+      <!-- Column 2: DayStar Assessment (center/featured) -->
+      <div class="compare-card compare-card--center">
+        <div class="compare-card__header">
+          <div class="compare-card__title">DayStar Assessment</div>
+          <span class="compare-card__badge">The Smart Move</span>
+        </div>
+        <div class="compare-card__row"><span class="compare-card__label">Scored 0–100 rubric</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Specific to your exact setup</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Delivered within 24 hours</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Expert-reviewed output</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Ranked priority recommendations</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Flat one-time price</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Personal follow-up option</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+      </div>
+
+      <!-- Column 3: Paid Consultant -->
+      <div class="compare-card">
+        <div class="compare-card__header">
+          <div class="compare-card__title">Paid Consultant</div>
+          <span class="compare-card__badge">Expensive &amp; Slow</span>
+        </div>
+        <div class="compare-card__row"><span class="compare-card__label">Scored 0–100 rubric</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Specific to your exact setup</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Delivered within 24 hours</span><span class="compare-card__value compare-card__value--no">✗</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Expert-reviewed output</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Ranked priority recommendations</span><span class="compare-card__value compare-card__value--partial">Sometimes</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Flat one-time price</span><span class="compare-card__value compare-card__value--no">$500–$2,000+</span></div>
+        <div class="compare-card__row"><span class="compare-card__label">Personal follow-up option</span><span class="compare-card__value compare-card__value--yes">✓</span></div>
+      </div>
     </div>
+
     <div style="text-align:center;margin-top:2.5rem;">
       <a href="assessment.html" class="btn btn-gold btn-lg">Get Your Assessment &rarr;</a>
     </div>
@@ -546,6 +540,24 @@
 
 
 <!-- ══════════════════════════════════════════════════════════
+     EMAIL SIGNUP
+════════════════════════════════════════════════════════════ -->
+<section style="background: var(--color-card); border-top: 1px solid var(--color-border); padding: 4rem 1.5rem;">
+  <div class="container" style="max-width:600px;text-align:center;">
+    <h2 style="margin-bottom:0.75rem;">Get Expert Grow Insights</h2>
+    <p style="color:var(--color-text-dim);margin-bottom:1.5rem;">Join the DayStar list. No spam — just cultivation intelligence that actually moves the needle.</p>
+    <!-- Email list lives in Google Sheets. See setup-instructions.txt to activate. -->
+    <form id="email-signup-form" style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
+      <input type="text" name="name" placeholder="Your name" required style="flex:1;min-width:160px;padding:0.75rem 1rem;background:var(--color-bg);border:1px solid var(--color-border-md);border-radius:var(--radius-sm);color:var(--color-parchment);font-size:0.92rem;">
+      <input type="email" name="email" placeholder="you@example.com" required style="flex:1.5;min-width:200px;padding:0.75rem 1rem;background:var(--color-bg);border:1px solid var(--color-border-md);border-radius:var(--radius-sm);color:var(--color-parchment);font-size:0.92rem;">
+      <button type="submit" class="btn btn-gold" style="white-space:nowrap;">Subscribe</button>
+    </form>
+    <div id="email-signup-msg" style="display:none;margin-top:1rem;font-size:0.88rem;"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
      FOOTER  — 4-column layout (AC Infinity style)
 ════════════════════════════════════════════════════════════ -->
 <footer class="footer">
@@ -567,8 +579,8 @@
           <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
         </svg>
         <div>
-          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
-          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Inter',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
         </div>
       </div>
       <p class="footer-tagline">Your Growth, Guided.</p>
@@ -603,9 +615,9 @@
       <ul>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <!-- TODO: Add real social links -->
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">YouTube</a></li>
+        <li><a href="https://www.instagram.com/daystar_consulting" target="_blank" rel="noopener">📷 Instagram</a></li>
+        <li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">𝕏 Twitter</a></li>
+        <li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">📘 Facebook</a></li>
       </ul>
     </div>
 
