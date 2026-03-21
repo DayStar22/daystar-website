@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow Assessment Intake Form — DayStar Cannabis Consulting</title>
+  <meta name="description" content="Complete your DayStar AI Grow Assessment intake form. 52 questions covering lighting, environment, nutrients, genetics, pest management, and harvest.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Intake Form Page Styles ───────────────────────── */
+    .intake-hero {
+      background: var(--color-card);
+      border-bottom: 1px solid var(--color-border);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .intake-hero h1 { color: var(--color-parchment); margin-bottom: 0.75rem; }
+    .intake-hero h1 .accent { color: var(--color-gold); }
+    .intake-hero p { color: var(--color-text-dim); max-width: 560px; margin: 0 auto; }
+
+    .intake-progress-bar-wrap {
+      background: var(--color-card);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .intake-progress-inner { max-width: 720px; margin: 0 auto; }
+    .intake-progress-label {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--color-text-dim); margin-bottom: 0.5rem;
+      font-family: var(--font-heading);
+    }
+    .intake-progress-track {
+      height: 6px; background: var(--color-border); border-radius: 99px; overflow: hidden;
+    }
+    .intake-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-green), var(--color-gold));
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .intake-wrap {
+      background: var(--color-bg);
+      padding: 3rem 1.5rem 5rem;
+    }
+    .intake-form {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Submitter info */
+    .intake-submitter-block {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .intake-submitter-block h3 {
+      font-size: 1rem;
+      color: var(--color-gold);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .intake-submitter-block .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 540px) {
+      .intake-submitter-block .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* Section blocks */
+    .intake-section {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .intake-section-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 2rem;
+      background: rgba(212, 175, 55, 0.06);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .intake-section-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--color-gold); color: #111;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 800; font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .intake-section-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 1.05rem; color: var(--color-parchment);
+      margin: 0;
+    }
+    .intake-section-sub {
+      font-size: 0.8rem; color: var(--color-text-dim); margin: 0;
+    }
+    .intake-section-body {
+      padding: 1.5rem 2rem 1.75rem;
+    }
+    @media (max-width: 540px) {
+      .intake-section-header { padding: 1rem 1.25rem; }
+      .intake-section-body { padding: 1.25rem 1.25rem; }
+      .intake-submitter-block { padding: 1.5rem 1.25rem; }
+    }
+
+    /* Question rows */
+    .intake-q {
+      margin-bottom: 1.5rem;
+    }
+    .intake-q:last-child { margin-bottom: 0; }
+    .intake-q label {
+      display: block;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--color-parchment);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .intake-q .q-hint {
+      font-size: 0.78rem; color: var(--color-text-dim);
+      margin-bottom: 0.5rem; display: block;
+    }
+    .intake-q input[type="text"],
+    .intake-q input[type="email"],
+    .intake-q input[type="number"],
+    .intake-q select,
+    .intake-q textarea {
+      width: 100%;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-parchment);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.65rem 0.9rem;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .intake-q input:focus,
+    .intake-q select:focus,
+    .intake-q textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+    }
+    .intake-q textarea { resize: vertical; min-height: 80px; }
+    .intake-q select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.2rem;
+    }
+    .intake-q .radio-group,
+    .intake-q .check-group {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .intake-q .radio-opt,
+    .intake-q .check-opt {
+      display: flex; align-items: center; gap: 0.45rem;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.85rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.85rem; color: var(--color-text-dim);
+    }
+    .intake-q .radio-opt:hover,
+    .intake-q .check-opt:hover { border-color: var(--color-gold); color: var(--color-parchment); }
+    .intake-q .radio-opt input,
+    .intake-q .check-opt input { margin: 0; accent-color: var(--color-gold); }
+    .intake-q .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .intake-q .two-col { grid-template-columns: 1fr; } }
+
+    /* Required star */
+    .req { color: var(--color-gold); margin-left: 2px; }
+
+    /* Submit block */
+    .intake-submit-block {
+      background: var(--color-card);
+      border: 2px solid var(--color-gold);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .intake-submit-block h3 {
+      color: var(--color-parchment); font-size: 1.2rem; margin-bottom: 0.5rem;
+    }
+    .intake-submit-block p {
+      color: var(--color-text-dim); font-size: 0.88rem; margin-bottom: 1.75rem;
+    }
+    .intake-submit-btn {
+      width: 100%; padding: 1.1rem 2rem;
+      background: var(--color-gold); color: #111;
+      border: 2px solid var(--color-gold);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading); font-weight: 800;
+      font-size: 1rem; letter-spacing: 0.04em;
+      cursor: pointer; transition: all var(--ease);
+    }
+    .intake-submit-btn:hover { background: var(--color-gold-light); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .intake-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .intake-success {
+      display: none;
+      background: rgba(45, 90, 39, 0.15);
+      border: 1.5px solid var(--color-green);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .intake-success.visible { display: block; }
+    .intake-success h3 { color: #4caf50; margin-bottom: 0.5rem; }
+    .intake-success p { color: var(--color-text-dim); font-size: 0.9rem; }
+
+    .intake-error-msg {
+      display: none;
+      background: rgba(180, 50, 50, 0.12);
+      border: 1.5px solid #b43232;
+      border-radius: var(--radius-sm);
+      color: #e07070;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .intake-error-msg.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Learn More &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="assessment.html" class="active">Assessment</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold active">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="assessment.html">Assessment</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+
+<!-- HERO -->
+<section class="intake-hero">
+  <span class="section-eyebrow">52-Question Intake Form</span>
+  <h1>Tell Us About <span class="accent">Your Grow</span></h1>
+  <p>Answer honestly — there are no wrong answers. The more detail you provide, the more accurate and useful your scored report will be. Takes about 15 minutes.</p>
+</section>
+
+
+<!-- STICKY PROGRESS BAR -->
+<div class="intake-progress-bar-wrap">
+  <div class="intake-progress-inner">
+    <div class="intake-progress-label">
+      <span id="progress-text">0 of 52 answered</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="intake-progress-track">
+      <div class="intake-progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FORM -->
+<div class="intake-wrap">
+  <form
+    id="intake-form"
+    class="intake-form"
+  >
+
+    <!-- ── SUBMITTER INFO ──────────────────────────────── -->
+    <div class="intake-submitter-block">
+      <h3>Your Contact Info</h3>
+      <div class="form-row">
+        <div class="intake-q">
+          <label for="si-name">Full Name <span class="req">*</span></label>
+          <input type="text" id="si-name" name="grower_name" placeholder="Your name" required autocomplete="name">
+        </div>
+        <div class="intake-q">
+          <label for="si-email">Email Address <span class="req">*</span></label>
+          <input type="email" id="si-email" name="grower_email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="intake-q" style="margin-bottom:0;">
+        <label for="si-role">Grower Type</label>
+        <select id="si-role" name="grower_type">
+          <option value="" disabled selected>Select your type</option>
+          <option value="Home Grower (personal use)">Home Grower — personal use</option>
+          <option value="Home Grower (medical)">Home Grower — medical</option>
+          <option value="Small Commercial (1–100 plants)">Small Commercial (1–100 plants)</option>
+          <option value="Large Commercial (100+ plants)">Large Commercial (100+ plants)</option>
+          <option value="Dispensary / Retail">Dispensary / Retail</option>
+          <option value="Consultant / Educator">Consultant / Educator</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+
+    <!-- ── SECTION 1: GROW SETUP ──────────────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">1</div>
+        <div>
+          <p class="intake-section-title">Grow Setup &amp; Experience</p>
+          <p class="intake-section-sub">8 questions — the basics of your operation</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label>What type of grow space are you using? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Grow tent" required> Grow tent</label>
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Dedicated grow room"> Dedicated grow room</label>
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Basement / garage"> Basement/garage</label>
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Greenhouse"> Greenhouse</label>
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Outdoor"> Outdoor</label>
+            <label class="radio-opt"><input type="radio" name="q1_space_type" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q2">What are the dimensions of your grow space? <span class="req">*</span></label>
+          <span class="q-hint">e.g. "4×4 ft tent", "10×10 ft room", "2×4 ft closet"</span>
+          <input type="text" id="q2" name="q2_space_dimensions" placeholder="e.g. 4×4 ft tent" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>How long have you been growing cannabis? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q3_experience" value="Less than 1 year" required> &lt; 1 year</label>
+            <label class="radio-opt"><input type="radio" name="q3_experience" value="1–2 years"> 1–2 years</label>
+            <label class="radio-opt"><input type="radio" name="q3_experience" value="3–5 years"> 3–5 years</label>
+            <label class="radio-opt"><input type="radio" name="q3_experience" value="6–10 years"> 6–10 years</label>
+            <label class="radio-opt"><input type="radio" name="q3_experience" value="10+ years"> 10+ years</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>What is your primary growing goal? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q4_goal" value="Personal use / recreation" required> Personal use</label>
+            <label class="radio-opt"><input type="radio" name="q4_goal" value="Medical / therapeutic"> Medical</label>
+            <label class="radio-opt"><input type="radio" name="q4_goal" value="Small commercial sale"> Small commercial</label>
+            <label class="radio-opt"><input type="radio" name="q4_goal" value="Large commercial operation"> Large commercial</label>
+            <label class="radio-opt"><input type="radio" name="q4_goal" value="Breeding / genetics"> Breeding</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q5">How many plants are you currently growing? <span class="req">*</span></label>
+          <input type="number" id="q5" name="q5_plant_count" placeholder="e.g. 4" min="1" max="10000" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>What growth stage are your plants currently in? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Seedling / germination" required> Seedling</label>
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Vegetative"> Vegetative</label>
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Early flower (weeks 1–3)"> Early flower</label>
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Mid flower (weeks 4–6)"> Mid flower</label>
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Late flower / pre-harvest"> Late flower</label>
+            <label class="radio-opt"><input type="radio" name="q6_growth_stage" value="Between grows"> Between grows</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Are you growing from seed or clone? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q7_seed_or_clone" value="Seed" required> Seed</label>
+            <label class="radio-opt"><input type="radio" name="q7_seed_or_clone" value="Clone / cutting"> Clone/cutting</label>
+            <label class="radio-opt"><input type="radio" name="q7_seed_or_clone" value="Both seed and clone"> Both</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q8">How many complete grows have you finished in your current setup?</label>
+          <input type="number" id="q8" name="q8_grows_completed" placeholder="e.g. 3" min="0">
+        </div>
+
+      </div>
+    </div><!-- /section 1 -->
+
+
+    <!-- ── SECTION 2: LIGHTING ────────────────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">2</div>
+        <div>
+          <p class="intake-section-title">Lighting</p>
+          <p class="intake-section-sub">7 questions — your light source and setup</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label>What type of lighting are you using? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="HPS (High Pressure Sodium)" required> HPS</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="MH (Metal Halide)"> MH</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="CMH / LEC"> CMH/LEC</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="LED (Quantum Board)"> LED – QB</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="LED (Bar / Strip)"> LED – Bar</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="LED (Blurple / Budget)"> LED – Blurple</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="T5 / Fluorescent"> T5/Fluorescent</label>
+            <label class="radio-opt"><input type="radio" name="q9_light_type" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q10">What is the total wattage of your lighting system? <span class="req">*</span></label>
+          <span class="q-hint">List brand and model if you know it — e.g. "Spider Farmer SF-4000, 450W"</span>
+          <input type="text" id="q10" name="q10_light_wattage" placeholder="e.g. 450W — Spider Farmer SF-4000" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q11">What is your current photoperiod (hours of light per day)?</label>
+          <span class="q-hint">e.g. "18/6" for veg, "12/12" for flower</span>
+          <input type="text" id="q11" name="q11_photoperiod" placeholder="e.g. 18/6 veg, 12/12 flower">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q12">How high is your light mounted above the canopy (inches)?</label>
+          <input type="number" id="q12" name="q12_light_height_inches" placeholder="e.g. 18" min="1" max="120">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q13">Do you measure PPFD / PAR at canopy level?</label>
+          <select id="q13" name="q13_ppfd_measured">
+            <option value="" disabled selected>Select…</option>
+            <option value="Yes — I have a PAR meter and measure regularly">Yes — I measure regularly with a PAR meter</option>
+            <option value="Yes — I checked once when I set up">Yes — I checked once at setup</option>
+            <option value="No — I rely on manufacturer recommendations">No — I use manufacturer specs</option>
+            <option value="No — I adjust by plant response only">No — I adjust by plant response</option>
+          </select>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q14">How old is your current lighting equipment?</label>
+          <input type="text" id="q14" name="q14_light_age" placeholder="e.g. 8 months, 3 years">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Do you use any supplemental lighting (UVB, far-red/infrared, etc.)?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q15_supplemental_light" value="No"> No</label>
+            <label class="radio-opt"><input type="radio" name="q15_supplemental_light" value="Yes — UVB"> Yes — UVB</label>
+            <label class="radio-opt"><input type="radio" name="q15_supplemental_light" value="Yes — Far-red / infrared"> Yes — Far-red/IR</label>
+            <label class="radio-opt"><input type="radio" name="q15_supplemental_light" value="Yes — Multiple supplements"> Yes — Multiple</label>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /section 2 -->
+
+
+    <!-- ── SECTION 3: ENVIRONMENT ─────────────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">3</div>
+        <div>
+          <p class="intake-section-title">Environment &amp; Climate</p>
+          <p class="intake-section-sub">8 questions — temperature, humidity, CO2, airflow</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q two-col" data-q>
+          <div>
+            <label for="q16">Daytime temp range (°F) <span class="req">*</span></label>
+            <input type="text" id="q16" name="q16_temp_day" placeholder="e.g. 74–80°F" required>
+          </div>
+          <div>
+            <label for="q17">Nighttime temp range (°F)</label>
+            <input type="text" id="q17" name="q17_temp_night" placeholder="e.g. 65–70°F">
+          </div>
+        </div>
+
+        <div class="intake-q two-col" data-q>
+          <div>
+            <label for="q18">Daytime relative humidity (%) <span class="req">*</span></label>
+            <input type="text" id="q18" name="q18_rh_day" placeholder="e.g. 55–65%" required>
+          </div>
+          <div>
+            <label for="q19">Nighttime relative humidity (%)</label>
+            <input type="text" id="q19" name="q19_rh_night" placeholder="e.g. 50–60%">
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Do you monitor and target VPD (Vapor Pressure Deficit)?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q20_vpd" value="Yes — I actively target a specific VPD range"> Yes — active VPD targeting</label>
+            <label class="radio-opt"><input type="radio" name="q20_vpd" value="Somewhat — I'm aware of VPD but don't optimize it"> Somewhat — aware but not optimizing</label>
+            <label class="radio-opt"><input type="radio" name="q20_vpd" value="No — I focus on temp and humidity independently"> No — temp/RH only</label>
+            <label class="radio-opt"><input type="radio" name="q20_vpd" value="Not sure what VPD is"> Not sure what VPD is</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q21">How do you control temperature in your space? <span class="req">*</span></label>
+          <span class="q-hint">List all methods used (e.g. mini-split AC, portable AC, exhaust fan, passive)</span>
+          <input type="text" id="q21" name="q21_temp_control" placeholder="e.g. 8000 BTU window AC + 6-inch inline exhaust fan" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q22">How do you control humidity?</label>
+          <input type="text" id="q22" name="q22_humidity_control" placeholder="e.g. 70-pint dehumidifier + humidifier for seedlings">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>What is your CO2 approach?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q23_co2" value="Ambient only (no supplemental CO2)"> Ambient only</label>
+            <label class="radio-opt"><input type="radio" name="q23_co2" value="Exhaled CO2 (people/pets in space)"> Exhaled CO2</label>
+            <label class="radio-opt"><input type="radio" name="q23_co2" value="CO2 bag / fungi"> CO2 bag/fungi</label>
+            <label class="radio-opt"><input type="radio" name="q23_co2" value="Bottled CO2 / tank (automated)"> Bottled/tank — automated</label>
+            <label class="radio-opt"><input type="radio" name="q23_co2" value="Bottled CO2 / tank (manual)"> Bottled/tank — manual</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q24">Describe your air circulation and exhaust setup.</label>
+          <span class="q-hint">e.g. "6-inch inline fan with carbon filter, 2 oscillating fans inside"</span>
+          <input type="text" id="q24" name="q24_airflow" placeholder="e.g. 6-inch inline + carbon filter, 2 clip fans inside">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q25">Do you use a controller or automated system for environment management?</label>
+          <select id="q25" name="q25_controller">
+            <option value="" disabled selected>Select…</option>
+            <option value="No — everything is manual">No — fully manual</option>
+            <option value="Basic outlet timer for lights only">Basic outlet timer for lights only</option>
+            <option value="Simple controller (Inkbird, etc.) for temp or humidity">Simple single-function controller</option>
+            <option value="Multi-function controller (Inkbird IBS, Govee, etc.)">Multi-function controller</option>
+            <option value="Advanced grow controller (Pulse, TrolMaster, etc.)">Advanced grow controller (Pulse, TrolMaster)</option>
+            <option value="Full automation / smart home integration">Full automation / smart home</option>
+          </select>
+        </div>
+
+      </div>
+    </div><!-- /section 3 -->
+
+
+    <!-- ── SECTION 4: GROWING MEDIUM ─────────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">4</div>
+        <div>
+          <p class="intake-section-title">Growing Medium &amp; Root Zone</p>
+          <p class="intake-section-sub">7 questions — medium, containers, watering, runoff</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label>What growing medium are you using? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Soil (organic/amended)" required> Soil — organic/amended</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Soil (synthetic / standard potting mix)"> Soil — synthetic mix</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Coco coir (pure)"> Coco coir — pure</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Coco/perlite blend"> Coco/perlite blend</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Rockwool / stone wool"> Rockwool</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="DWC (Deep Water Culture)"> DWC</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="RDWC (Recirculating DWC)"> RDWC</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="NFT (Nutrient Film Technique)"> NFT</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Aeroponics"> Aeroponics</label>
+            <label class="radio-opt"><input type="radio" name="q26_medium" value="Other"> Other</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q27">If using soil, what specific mix or brand?</label>
+          <span class="q-hint">Skip if using hydro</span>
+          <input type="text" id="q27" name="q27_soil_mix" placeholder="e.g. Fox Farm Ocean Forest, custom super soil mix">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q28">What container size and type are you using? <span class="req">*</span></label>
+          <input type="text" id="q28" name="q28_container" placeholder="e.g. 5-gallon fabric pot, 3-gallon plastic, DWC bucket" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q29">How do you determine when to water / feed?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Set schedule (every X days)"> Set schedule (every X days)</label>
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Lift test (pot weight)"> Lift test — pot weight</label>
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Soil moisture meter"> Soil moisture meter</label>
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Finger test (soil dryness)"> Finger test</label>
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Visual / plant response"> Visual/plant response</label>
+            <label class="radio-opt"><input type="radio" name="q29_water_schedule" value="Automated irrigation timer"> Automated timer</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q30">What is your typical runoff (or reservoir) pH? <span class="req">*</span></label>
+          <input type="text" id="q30" name="q30_runoff_ph" placeholder="e.g. 6.2–6.5" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q31">What is your typical runoff (or reservoir) EC / PPM?</label>
+          <input type="text" id="q31" name="q31_runoff_ec" placeholder="e.g. 1.8 EC / 900 PPM">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>How often do you check and adjust runoff / reservoir values?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q32_runoff_freq" value="Every watering"> Every watering</label>
+            <label class="radio-opt"><input type="radio" name="q32_runoff_freq" value="Once or twice per week"> 1–2× per week</label>
+            <label class="radio-opt"><input type="radio" name="q32_runoff_freq" value="Once per week"> Once per week</label>
+            <label class="radio-opt"><input type="radio" name="q32_runoff_freq" value="Occasionally (when I remember)"> Occasionally</label>
+            <label class="radio-opt"><input type="radio" name="q32_runoff_freq" value="I don't check runoff"> I don't check</label>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /section 4 -->
+
+
+    <!-- ── SECTION 5: NUTRITION ───────────────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">5</div>
+        <div>
+          <p class="intake-section-title">Nutrition &amp; Feeding</p>
+          <p class="intake-section-sub">8 questions — nutrients, schedule, supplements, pH</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label for="q33">What nutrient brand / line are you using? <span class="req">*</span></label>
+          <input type="text" id="q33" name="q33_nutrient_brand" placeholder="e.g. General Hydroponics Flora Trio, Jack's 321, Fox Farm Trio" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Are you following the manufacturer's recommended feed schedule?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q34_feed_schedule" value="Yes — I follow it closely"> Yes — closely</label>
+            <label class="radio-opt"><input type="radio" name="q34_feed_schedule" value="Loosely — I modify it based on plant response"> Loosely — modified</label>
+            <label class="radio-opt"><input type="radio" name="q34_feed_schedule" value="No — I use my own schedule"> No — my own schedule</label>
+            <label class="radio-opt"><input type="radio" name="q34_feed_schedule" value="No — I feed by runoff / EC readings only"> No — by EC readings only</label>
+          </div>
+        </div>
+
+        <div class="intake-q two-col" data-q>
+          <div>
+            <label for="q35">Feeding EC / PPM during veg</label>
+            <input type="text" id="q35" name="q35_feed_ec_veg" placeholder="e.g. 1.2 EC / 600 PPM">
+          </div>
+          <div>
+            <label for="q36">Feeding EC / PPM during flower</label>
+            <input type="text" id="q36" name="q36_feed_ec_flower" placeholder="e.g. 2.0 EC / 1000 PPM">
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q37">What pH do you target when feeding? <span class="req">*</span></label>
+          <input type="text" id="q37" name="q37_feed_ph" placeholder="e.g. 6.0–6.5 for soil, 5.8–6.2 for coco/hydro" required>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q38">What supplements or additives do you use?</label>
+          <span class="q-hint">List everything — boosters, enzymes, beneficial bacteria, silica, CalMag, etc.</span>
+          <textarea id="q38" name="q38_supplements" placeholder="e.g. Recharge (beneficial microbes), CalMag, Silica, Terpinator, Floralicious Plus..."></textarea>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Do you perform a flush or plain-water period before harvest?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q39_flush" value="Yes — full flush (1–2 weeks plain water)"> Yes — full flush</label>
+            <label class="radio-opt"><input type="radio" name="q39_flush" value="Yes — short flush (3–5 days)"> Yes — short flush</label>
+            <label class="radio-opt"><input type="radio" name="q39_flush" value="No — I feed until harvest"> No — feed until harvest</label>
+            <label class="radio-opt"><input type="radio" name="q39_flush" value="I use a flushing agent (Flawless Finish, Florakleen, etc.)"> Yes — flushing agent</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>How do you typically diagnose nutrient deficiencies or toxicities?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q40_deficiency_diagnosis" value="Visual leaf inspection + chart"> Visual inspection + chart</label>
+            <label class="radio-opt"><input type="radio" name="q40_deficiency_diagnosis" value="Runoff testing (pH + EC)"> Runoff testing</label>
+            <label class="radio-opt"><input type="radio" name="q40_deficiency_diagnosis" value="Tissue testing / lab analysis"> Tissue/lab testing</label>
+            <label class="radio-opt"><input type="radio" name="q40_deficiency_diagnosis" value="I ask forums / online communities"> Ask forums/communities</label>
+            <label class="radio-opt"><input type="radio" name="q40_deficiency_diagnosis" value="I'm not sure — I struggle to diagnose issues"> Not confident diagnosing</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q41">Any recent deficiency, toxicity, or feeding problems you've noticed?</label>
+          <textarea id="q41" name="q41_recent_feed_issues" placeholder="Describe any yellowing, clawing, spots, burn tips, etc. Or write 'None'..."></textarea>
+        </div>
+
+      </div>
+    </div><!-- /section 5 -->
+
+
+    <!-- ── SECTION 6: PEST &amp; DISEASE ─────────────── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">6</div>
+        <div>
+          <p class="intake-section-title">Pest, Disease &amp; IPM</p>
+          <p class="intake-section-sub">7 questions — prevention, treatment, sanitation</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label>Have you had any pest issues in the past 6 months? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q42_pest_history" value="No pests" required> No — pest-free</label>
+            <label class="radio-opt"><input type="radio" name="q42_pest_history" value="Minor issue, quickly resolved"> Minor — resolved</label>
+            <label class="radio-opt"><input type="radio" name="q42_pest_history" value="Moderate — required treatment"> Moderate — treated</label>
+            <label class="radio-opt"><input type="radio" name="q42_pest_history" value="Severe — significant crop damage"> Severe — crop damage</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q43">What pests have you encountered? (list all, or write "none")</label>
+          <input type="text" id="q43" name="q43_pest_types" placeholder="e.g. spider mites, fungus gnats, aphids, thrips — or 'none'">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q44">What preventative IPM measures do you currently practice?</label>
+          <span class="q-hint">e.g. sticky traps, neem oil sprays, beneficial insects, physical barriers</span>
+          <textarea id="q44" name="q44_ipm_preventive" placeholder="Describe your regular pest prevention routine..."></textarea>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Have you had any disease, mold, or pathogen issues? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q45_disease_history" value="No disease or mold" required> No</label>
+            <label class="radio-opt"><input type="radio" name="q45_disease_history" value="Powdery mildew"> Powdery mildew</label>
+            <label class="radio-opt"><input type="radio" name="q45_disease_history" value="Botrytis (bud rot / grey mold)"> Botrytis/bud rot</label>
+            <label class="radio-opt"><input type="radio" name="q45_disease_history" value="Root rot / pythium"> Root rot</label>
+            <label class="radio-opt"><input type="radio" name="q45_disease_history" value="Multiple disease issues"> Multiple issues</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q46">What is your protocol for introducing new clones or plants into your space?</label>
+          <select id="q46" name="q46_quarantine_protocol">
+            <option value="" disabled selected>Select…</option>
+            <option value="Full quarantine — 2+ weeks in separate space, inspect and treat before integrating">Full quarantine — 2+ weeks isolated</option>
+            <option value="Brief quarantine — a few days, visual inspection only">Brief quarantine — visual check only</option>
+            <option value="Inspect visually on arrival, treat preventatively">Inspect + preventative treatment</option>
+            <option value="Bring them straight in, no quarantine">No quarantine — straight in</option>
+            <option value="I only grow from seed — no clones introduced">Seed-only — not applicable</option>
+          </select>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q47">What is your between-grow cleaning and sanitation protocol?</label>
+          <textarea id="q47" name="q47_sanitation" placeholder="e.g. H2O2 wash of all surfaces, replace rockwool, bleach solution, replace soil..."></textarea>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>Do you use beneficial insects or biological controls?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q48_beneficials" value="No"> No</label>
+            <label class="radio-opt"><input type="radio" name="q48_beneficials" value="Yes — predatory mites"> Predatory mites</label>
+            <label class="radio-opt"><input type="radio" name="q48_beneficials" value="Yes — ladybugs / lacewings"> Ladybugs/lacewings</label>
+            <label class="radio-opt"><input type="radio" name="q48_beneficials" value="Yes — nematodes"> Nematodes</label>
+            <label class="radio-opt"><input type="radio" name="q48_beneficials" value="Yes — multiple biologicals"> Multiple biologicals</label>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /section 6 -->
+
+
+    <!-- ── SECTION 7: TRAINING, HARVEST, POST-HARVEST ── -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">7</div>
+        <div>
+          <p class="intake-section-title">Training, Harvest &amp; Post-Harvest</p>
+          <p class="intake-section-sub">7 questions — canopy, yield, drying, curing</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+
+        <div class="intake-q" data-q>
+          <label>What canopy training techniques do you use?</label>
+          <div class="check-group">
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="None / no training"> None</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="Topping"> Topping</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="FIMing"> FIMing</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="Low Stress Training (LST)"> LST</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="SCROG (Screen of Green)"> SCROG</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="SOG (Sea of Green)"> SOG</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="Lollipopping / defoliation"> Lollipopping</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="Super Cropping"> Super cropping</label>
+            <label class="check-opt"><input type="checkbox" name="q49_training[]" value="Mainlining / manifolding"> Mainlining</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>How do you determine harvest timing? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q50_harvest_timing" value="Trichome color under microscope / loupe (primary)" required> Trichome color — loupe/microscope</label>
+            <label class="radio-opt"><input type="radio" name="q50_harvest_timing" value="Pistil (hair) color change"> Pistil color change</label>
+            <label class="radio-opt"><input type="radio" name="q50_harvest_timing" value="Breeder's stated flowering time"> Breeder's stated flower time</label>
+            <label class="radio-opt"><input type="radio" name="q50_harvest_timing" value="Combination of all three"> Combination of all three</label>
+            <label class="radio-opt"><input type="radio" name="q50_harvest_timing" value="By feel / experience"> By feel/experience</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q51">What are your drying conditions and method?</label>
+          <span class="q-hint">e.g. "hang-dry in dark room, 60°F, 60% RH, 10–14 days"</span>
+          <input type="text" id="q51" name="q51_drying" placeholder="e.g. hang-dry dark room, 62°F, 58% RH, ~12 days">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q52">What is your curing method and duration?</label>
+          <input type="text" id="q52" name="q52_curing" placeholder="e.g. glass mason jars, burp daily for 2 weeks, then monthly for 2 months">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q53">What is your typical yield?</label>
+          <span class="q-hint">Be as specific as possible — per plant, per sq ft, per watt, or total per run</span>
+          <input type="text" id="q53" name="q53_yield" placeholder="e.g. 2–3 oz per plant, 1 g/watt, 1 lb per 4x4 run">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label>How do you trim your harvest?</label>
+          <div class="radio-group">
+            <label class="radio-opt"><input type="radio" name="q54_trim" value="Wet trim (before drying)"> Wet trim — before drying</label>
+            <label class="radio-opt"><input type="radio" name="q54_trim" value="Dry trim (after drying)"> Dry trim — after drying</label>
+            <label class="radio-opt"><input type="radio" name="q54_trim" value="Machine trim"> Machine trim</label>
+            <label class="radio-opt"><input type="radio" name="q54_trim" value="Combination / depends on the run"> Combination</label>
+          </div>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q55">What are your 2–3 biggest current frustrations or challenges with your grow?</label>
+          <span class="q-hint">Be honest — this helps Lance focus your report's recommendations on what matters most to you.</span>
+          <textarea id="q55" name="q55_biggest_challenges" placeholder="e.g. inconsistent yields, can't figure out why leaves keep yellowing in week 6, struggling with humidity in late flower..." style="min-height: 100px;" required></textarea>
+        </div>
+
+      </div>
+    </div><!-- /section 7 -->
+
+
+    <!-- ── SUBMIT ──────────────────────────────────────── -->
+    <div class="intake-submit-block">
+      <h3>Ready to Submit Your Grow Profile?</h3>
+      <p>Once submitted, our AI will instantly analyze your answers using a 100-point rubric and generate your personalized grow report.</p>
+      <button type="submit" class="intake-submit-btn" id="intake-submit-btn">
+        Generate My Grow Report &rarr;
+      </button>
+      <div class="intake-error-msg" id="intake-error-msg">
+        Something went wrong sending your form. Please try again or email Lance directly at <a href="mailto:lancefisher51@gmail.com" style="color:var(--color-gold);">lancefisher51@gmail.com</a>.
+      </div>
+    </div>
+
+    <!-- Success message (no longer used — redirects to results.html) -->
+    <div class="intake-success" id="intake-success" style="display:none;"></div>
+
+  </form>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="report.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── Progress bar ──────────────────────────────────── */
+  var TOTAL_Q = 52;
+  var form     = document.getElementById('intake-form');
+  var fill     = document.getElementById('progress-fill');
+  var label    = document.getElementById('progress-text');
+  var pct      = document.getElementById('progress-pct');
+
+  function updateProgress() {
+    var answered = 0;
+    var questions = form.querySelectorAll('[data-q]');
+    questions.forEach(function (q) {
+      var inputs  = q.querySelectorAll('input:not([type="hidden"]), select, textarea');
+      var filled  = false;
+      inputs.forEach(function (inp) {
+        if (inp.type === 'radio' || inp.type === 'checkbox') {
+          if (inp.checked) filled = true;
+        } else if (inp.value.trim() !== '') {
+          filled = true;
+        }
+      });
+      if (filled) answered++;
+    });
+    var p = Math.round((answered / TOTAL_Q) * 100);
+    fill.style.width  = p + '%';
+    label.textContent = answered + ' of ' + TOTAL_Q + ' answered';
+    pct.textContent   = p + '%';
+  }
+
+  form.addEventListener('change', updateProgress);
+  form.addEventListener('input',  updateProgress);
+  updateProgress();
+
+  /* ── Form submission → AI report pipeline ──────────── */
+  var submitBtn  = document.getElementById('intake-submit-btn');
+  var errorEl    = document.getElementById('intake-error-msg');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Preparing…';
+    errorEl.classList.remove('visible');
+
+    // Collect form answers as text
+    var answersText = collectFormAnswers(form);
+    var email = document.getElementById('si-email').value;
+    var name  = document.getElementById('si-name').value;
+
+    // Store in sessionStorage for results page
+    sessionStorage.setItem('ds-report-answers', answersText);
+    sessionStorage.setItem('ds-report-email', email);
+    sessionStorage.setItem('ds-report-name', name);
+
+    // Redirect to results page where the AI call happens
+    window.location.href = 'results.html';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Grow Assessment — DayStar Cannabis Consulting</title>
+  <meta name="description" content="Order your DayStar AI Grow Assessment. 100-point cannabis cultivation audit delivered in 24 hours. Personalized recommendations from expert consultant Lance Fisher.">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Get Your Grow Assessment — DayStar Cannabis Consulting">
+  <meta property="og:description" content="100-point cannabis grow audit. Expert recommendations. 24-hour delivery.">
+  <meta property="og:image"       content="<!-- TODO: OG image URL -->">
+  <meta property="og:url"         content="<!-- TODO: Production URL -->/assessment.html">
+  <meta name="twitter:card"       content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .assess-hero { background: var(--color-card); border-bottom: 1px solid var(--color-border); padding: 5rem 1.5rem 4rem; text-align: center; }
+    .assess-hero h1 { color: var(--color-parchment); margin-bottom: 1.25rem; }
+    .assess-hero h1 .accent { color: var(--color-gold); }
+    .assess-hero .hero-sub { max-width: 620px; margin: 0 auto 0; font-size: 1.05rem; color: var(--color-text-dim); }
+
+    .assess-steps { background: var(--color-bg); padding: 4rem 1.5rem; }
+    .assess-steps h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1rem; color: var(--color-text-dim); text-align: center; margin-bottom: 2rem; }
+
+    .assess-buy  { background: var(--color-card); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 4rem 1.5rem; }
+
+    .payhip-block {
+      max-width: 520px; margin: 0 auto;
+      background: var(--color-bg); border: 2px solid var(--color-gold);
+      border-radius: var(--radius-lg); padding: 2.75rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .payhip-block::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--color-green), var(--color-gold));
+    }
+    .payhip-block h3 { font-size: 1.35rem; color: var(--color-parchment); margin-bottom: 0.25rem; }
+    .payhip-price {
+      font-family: var(--font-heading); font-weight: 900; font-size: 2.5rem;
+      color: var(--color-gold); margin: 0.75rem 0 1.5rem; line-height: 1;
+    }
+    .payhip-price span { font-size: 0.9rem; font-weight: 400; color: var(--color-text-dim); }
+    .payhip-btn {
+      display: block; width: 100%; padding: 1.1rem 2rem;
+      background: var(--color-gold); color: #111; border: 2px solid var(--color-gold);
+      border-radius: var(--radius-sm); font-family: var(--font-heading); font-weight: 800;
+      font-size: 1rem; letter-spacing: 0.04em; cursor: pointer; text-align: center;
+      text-decoration: none; transition: all var(--ease);
+    }
+    .payhip-btn:hover { background: var(--color-gold-light); border-color: var(--color-gold-light); color: #111; transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+    .assess-faq { background: var(--color-bg); padding: 4rem 1.5rem; border-top: 1px solid var(--color-border); }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold active">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+
+<!-- HERO -->
+<section class="assess-hero">
+  <span class="section-eyebrow">The Assessment</span>
+  <h1>Your Grow Has a <span class="accent">Score.</span><br>Do You Know It?</h1>
+  <p class="hero-sub">Submit your grow profile. Get a 100-point expert audit — with a ranked PDF report and personalized recommendations — delivered within 24 hours.</p>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="assess-steps">
+  <div class="container">
+    <h3>Here's exactly what happens after you purchase:</h3>
+    <ol class="process-ordered">
+      <li><div><p><strong>Complete the 52-question intake form</strong> — takes about 15 minutes. Covers lighting, environment, nutrients, genetics, pest management, and harvest protocol.</p></div></li>
+      <li><div><p><strong>Our AI rubric scores your grow</strong> across 7 expert-defined categories and generates your 100-point overall score with per-category commentary.</p></div></li>
+      <li><div><p><strong>Receive your branded PDF report</strong> within 24 hours — score breakdown, top 3 ranked recommendations, Lance's personal note. Optional: schedule your 15-min debrief call.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- BUY / PAYHIP -->
+<section class="assess-buy">
+  <div class="container">
+    <div class="payhip-block">
+      <div class="pricing-label">DayStar AI Grow Assessment</div>
+      <h3>The Complete Grow Audit</h3>
+      <div class="payhip-price">FREE <span>for a limited time</span></div>
+
+      <ul class="pricing-list" style="text-align:left;margin-bottom:1.75rem;">
+        <li><span class="check">&#10003;</span><span>52-question expert intake form</span></li>
+        <li><span class="check">&#10003;</span><span>100-point scored rubric</span></li>
+        <li><span class="check">&#10003;</span><span>7-category breakdown + commentary</span></li>
+        <li><span class="check">&#10003;</span><span>Top 3 ranked recommendations</span></li>
+        <li><span class="check">&#10003;</span><span>Personal note from Lance Fisher</span></li>
+        <li><span class="check">&#10003;</span><span>Branded PDF — 24-hour delivery</span></li>
+        <li><span class="check">&#10003;</span><span>Optional 15-min debrief call</span></li>
+      </ul>
+
+      <a href="intake-form.html" class="payhip-btn">Start Your Free Assessment &rarr;</a>
+
+      <div class="trust-row" style="margin-top:1.5rem;">
+        <div class="trust-item"><span class="trust-item-icon">&#10003;</span> No payment required</div>
+        <div class="trust-item"><span class="trust-item-icon">⏱</span> 24-hr turnaround</div>
+        <div class="trust-item"><span class="trust-item-icon">🔒</span> Your data stays private</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:0.84rem;color:var(--color-text-dimmer);">
+      Not sure yet? <a href="sample.html">View a sample report first &rarr;</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="container">
+    <h3>Ready to know your score?</h3>
+    <a href="intake-form.html" class="btn btn-gold btn-lg">Start Your Free Assessment &rarr;</a>
+  </div>
+</div>
+
+
+<!-- MINI FAQ -->
+<section class="assess-faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">FAQ</span>
+      <h2>Quick Answers</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What do I need before I start the form?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Have your basic setup details handy: light specs (wattage, spectrum, mounting height), your current nutrient line and feed schedule, temp/humidity logs if you have them, and your growing medium. The form is designed to be completed from memory for most growers.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is my grow data kept private?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Yes. Your intake responses are used solely to generate your assessment report. They are never shared, sold, or published. Your grow is your business.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can I purchase for a future grow rather than my current one?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">The assessment is most accurate during an active grow — ideally mid-vegetative or early flower stage. If you're between cycles, reach out via the <a href="contact.html">contact page</a> and Lance can advise on timing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

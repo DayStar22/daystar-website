@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — DayStar Cannabis Education & Consulting</title>
+  <meta name="description" content="Get in touch with DayStar Cannabis Consulting. Questions about the Grow Assessment, consulting services, or Lance Fisher's work — send us a message.">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Contact DayStar Cannabis Consulting">
+  <meta property="og:description" content="Questions about the Grow Assessment or consulting services? Reach out to the DayStar team.">
+  <meta property="og:image"       content="<!-- TODO: Replace with real OG image URL -->">
+  <meta property="og:url"         content="<!-- TODO: Replace with production URL -->/contact.html">
+  <meta name="twitter:card"       content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="section-eyebrow">Contact</span>
+  <h1>Get in <span class="accent">Touch</span></h1>
+  <p>Questions about the assessment, consulting services, or Lance's work — send a message and we'll respond within one business day.</p>
+</div>
+
+
+<!-- CONTACT FORM -->
+<section style="background: var(--color-bg); padding: 5rem 1.5rem;">
+  <div class="container">
+    <div class="contact-form-wrap">
+
+      <form id="contact-form" action="https://formspree.io/f/YOUR_CONTACT_FORM_ID" method="POST" novalidate>
+        <div class="form-group">
+          <label for="contact-name">Full Name</label>
+          <input
+            type="text"
+            id="contact-name"
+            name="name"
+            placeholder="Your name"
+            required
+            autocomplete="name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contact-email">Email Address</label>
+          <input
+            type="email"
+            id="contact-email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contact-role">I'm a:</label>
+          <select id="contact-role" name="role" required>
+            <option value="" disabled selected>Select your grower type</option>
+            <option value="home">Home Grower</option>
+            <option value="commercial">Commercial Operator</option>
+            <option value="dispensary">Dispensary</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            placeholder="Tell us what's on your mind..."
+            required
+          ></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="New DayStar Contact Form Message">
+        <button type="submit" class="btn btn-gold btn-lg" id="contact-submit-btn" style="width:100%;text-align:center;">
+          Send Message
+        </button>
+        <div id="contact-error-msg" style="display:none;margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(180,50,50,0.12);border:1.5px solid #b43232;border-radius:6px;color:#e07070;font-size:0.85rem;">
+          Something went wrong. Please try again or email <a href="mailto:lancefisher51@gmail.com" style="color:var(--color-gold);">lancefisher51@gmail.com</a> directly.
+        </div>
+      </form>
+
+      <p class="contact-email-note">
+        Prefer email? Reach us at
+        <a href="mailto:lancefisher51@gmail.com">lancefisher51@gmail.com</a>
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="container">
+    <h3>Ready to get your grow scored?</h3>
+    <a href="assessment.html" class="btn btn-gold btn-lg">Get Your Grow Assessment</a>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html#book">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

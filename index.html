@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DayStar Cannabis Education & Consulting — Your Growth, Guided.</title>
+  <meta name="description" content="DayStar's AI-powered Grow Assessment gives cannabis cultivators a 100-point expert audit — ranked report and personalized recommendations in 24 hours.">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="DayStar Cannabis Education & Consulting — Your Growth, Guided.">
+  <meta property="og:description" content="AI-powered cannabis grow audit. 100-point expert assessment. Results in 24 hours.">
+  <meta property="og:image"       content="<!-- TODO: OG image URL -->">
+  <meta property="og:url"         content="<!-- TODO: Production URL -->">
+  <meta name="twitter:card"       content="summary_large_image">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR ──────────────────────────────────── -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Get Yours &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- ── NAVIGATION ─────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark">
+        <span class="wm-name">DAYSTAR</span>
+        <span class="wm-sub">CONSULTING</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="assessment.html" class="btn btn-gold btn-lg">Get Assessment</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI-Powered Cultivation Intelligence
+      </div>
+      <h1>Your Grow Has a <span class="accent">Score.</span><br>Do You Know It?</h1>
+      <p class="hero-sub">
+        DayStar's expert-built assessment gives you a 100-point audit of your cannabis
+        operation — with a ranked PDF report and personalized recommendations
+        delivered within 24 hours.
+      </p>
+      <div class="hero-actions">
+        <a href="assessment.html" class="btn btn-gold btn-xl">
+          Get Your Grow Assessment &nbsp;&rarr;
+        </a>
+        <a href="sample.html" class="hero-sec-link">See a Sample Report &rarr;</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-star-wrap">
+        <div class="hero-glow"></div>
+        <svg class="hero-star-outer" width="260" height="260" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27" opacity="0.85"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27" opacity="0.85"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27" opacity="0.85"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27" opacity="0.85"/>
+        </svg>
+        <svg class="hero-star-inner" width="260" height="260" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     STATS STRIP  (AC Infinity-style)
+════════════════════════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">100</span>
+      <span class="stat-label">Point Rubric</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">7</span>
+      <span class="stat-label">Graded Categories</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">24h</span>
+      <span class="stat-label">Report Delivery</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Expert Reviewer</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURES / BENEFITS GRID  (4-col, icon + copy)
+════════════════════════════════════════════════════════════ -->
+<section class="features-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Why It Works</span>
+      <h2>Expert Intelligence. Actionable Results.</h2>
+      <p>Four reasons growers choose DayStar over guesswork.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🎯</div>
+        <h4>Scored Against a Real Rubric</h4>
+        <p>Not vibes — a 100-point expert framework built on published cultivation science and hands-on consulting practice.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">⚙️</div>
+        <h4>Specific to Your Setup</h4>
+        <p>52 questions map your exact grow. The output is tailored to your medium, environment, genetics, and current stage — not a generic grower.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📋</div>
+        <h4>Ranked Priorities, Not Lists</h4>
+        <p>Every report delivers your top 3 improvements ranked by impact. You always know what to fix first.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">👁️</div>
+        <h4>Human Review on Every Report</h4>
+        <p>Lance Fisher reads every assessment before delivery and adds a personal note. The AI scores — the expert contextualizes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PROBLEM / PAIN
+════════════════════════════════════════════════════════════ -->
+<section style="background: var(--color-card); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: var(--section-pad, 5rem 1.5rem);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Problem</span>
+      <h2>Most Growers Are Flying Blind</h2>
+      <p>Without an objective benchmark, problems compound silently — and yields suffer.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📉</div>
+        <h4>Yields That Don't Match Your Inputs</h4>
+        <p>You're spending on lights, nutrients, and genetics. Your output doesn't reflect it. Something is misaligned — you just don't know what.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🔬</div>
+        <h4>Problems You Can't Diagnose Fast Enough</h4>
+        <p>By the time a deficiency, pest, or environmental issue is obvious, you've already lost days — or the entire crop.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🧭</div>
+        <h4>No Benchmark. No Score. No Plan.</h4>
+        <p>You're comparing your grow to YouTube videos — not to a structured, expert-built rubric grounded in cultivation science.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA STRIP
+════════════════════════════════════════════════════════════ -->
+<div class="cta-strip">
+  <div class="container">
+    <h3>Ready to know your score?</h3>
+    <a href="assessment.html" class="btn btn-gold btn-lg">Get Your Grow Assessment</a>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════════════════ -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2>Three Steps to a Scored Report</h2>
+      <p>From intake to inbox in 24 hours.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <h3>Submit Your Intake Form</h3>
+        <p>Complete the 52-question grow profile in about 15 minutes. Every critical variable across 7 cultivation categories.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <h3>AI Rubric Scores Your Grow</h3>
+        <p>Our expert-built rubric evaluates your responses against proven benchmarks — producing your 100-point score and category breakdown.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">3</div>
+        <h3>Get Your Branded PDF Report</h3>
+        <p>Receive your scored report within 24 hours. Includes top 3 ranked recommendations and an optional 15-min debrief with Lance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PRODUCT REVEAL
+════════════════════════════════════════════════════════════ -->
+<section class="product-section">
+  <div class="container">
+    <div class="product-inner">
+
+      <div class="report-mock" aria-hidden="true" style="position:relative;">
+        <div class="report-mock-shadow"></div>
+        <div class="report-mock-card">
+          <div class="report-mock-top">
+            <div class="report-mock-top-left">
+              <h4>DayStar Grow Assessment</h4>
+              <p>SAMPLE GROWER &mdash; WK 6 FLOWER</p>
+            </div>
+            <div class="score-circle">
+              <span class="score-num">73</span>
+              <span class="score-denom">/100</span>
+            </div>
+          </div>
+          <div class="report-mock-body">
+            <div class="mock-bar"><div class="mock-bar-label"><span>Lighting</span><span>16/20</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:80%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Environment &amp; VPD</span><span>14/20</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:70%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Nutrition &amp; Water</span><span>11/15</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:73%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Root Zone</span><span>7/10</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:70%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Genetics &amp; Strain Fit</span><span>8/10</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:80%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Pest / Disease Risk</span><span>11/15</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:73%"></div></div></div>
+            <div class="mock-bar"><div class="mock-bar-label"><span>Harvest Readiness</span><span>6/10</span></div><div class="mock-bar-track"><div class="mock-bar-fill" style="width:60%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-eyebrow">The Report</span>
+        <h2>A $5,000 Consultant's Eye. At a Fraction of the Price.</h2>
+        <p style="color:var(--color-text-dim);margin-bottom:0;">Every DayStar report is built on the same framework Lance uses in paid engagements — now accessible to any grower who submits the intake form.</p>
+
+        <ul class="includes-list">
+          <li><span class="check">&#10003;</span><span><strong>100-point scored rubric</strong> — objective, not opinion-based</span></li>
+          <li><span class="check">&#10003;</span><span><strong>7-category breakdown</strong> with per-category scores and commentary</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Top 3 ranked recommendations</strong> — prioritized by impact</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Personal note from Lance Fisher</strong> with high-level context</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Branded PDF delivery</strong> within 24 hours of submission</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Optional 15-min debrief call</strong> with Lance</span></li>
+        </ul>
+
+        <a href="assessment.html" class="btn btn-gold mt-2">Get Your Assessment &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SCORING CATEGORIES
+════════════════════════════════════════════════════════════ -->
+<section class="scoring-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Rubric</span>
+      <h2>What We Grade</h2>
+      <p>Seven critical categories. 100 total points. Every score benchmarked against expert cultivation standards.</p>
+    </div>
+    <div class="scoring-grid">
+      <div class="score-card"><div class="score-icon" aria-hidden="true">💡</div><div class="score-info"><h4>Lighting</h4><p>Spectrum, intensity, photoperiod, canopy penetration</p></div><div class="score-pts">20 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🌡️</div><div class="score-info"><h4>Environment &amp; VPD</h4><p>Temperature, humidity, airflow, vapor pressure deficit</p></div><div class="score-pts">20 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🧪</div><div class="score-info"><h4>Nutrition &amp; Water Quality</h4><p>Feed schedules, EC/TDS, pH management, input quality</p></div><div class="score-pts">15 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🌱</div><div class="score-info"><h4>Growing Medium &amp; Root Zone</h4><p>Substrate choice, drainage, root health, oxygen availability</p></div><div class="score-pts">10 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🧬</div><div class="score-info"><h4>Genetics &amp; Strain Fit</h4><p>Phenotype selection, environmental compatibility, sourcing</p></div><div class="score-pts">10 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🛡️</div><div class="score-info"><h4>Pest / Disease / Contamination Risk</h4><p>IPM protocols, monitoring frequency, contamination controls</p></div><div class="score-pts">15 pts</div></div>
+      <div class="score-card"><div class="score-icon" aria-hidden="true">🌾</div><div class="score-info"><h4>Harvest Readiness &amp; Post-Harvest</h4><p>Flush protocol, trichome monitoring, dry/cure environment</p></div><div class="score-pts">10 pts</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY DAYSTAR — COMPARISON TABLE
+════════════════════════════════════════════════════════════ -->
+<section class="compare-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Why DayStar</span>
+      <h2>How We Compare</h2>
+      <p>Not all cultivation guidance is created equal. Here's how the DayStar Assessment stacks up against the alternatives.</p>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table" role="table" aria-label="DayStar comparison table">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:left;">Feature</th>
+            <th scope="col" class="col-daystar">DayStar Assessment</th>
+            <th scope="col">YouTube / Forums</th>
+            <th scope="col">Paid Consultant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scored rubric (0–100)</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Specific to your grow setup</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+            <td><span class="cmp-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Delivered within 24 hours</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-part">Instant but generic</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>Expert-reviewed output</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-part">Varies widely</span></td>
+            <td><span class="cmp-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Ranked, prioritized recommendations</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+            <td><span class="cmp-part">Sometimes</span></td>
+          </tr>
+          <tr>
+            <td>One-time flat price</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-yes">Free</span></td>
+            <td><span class="cmp-no">$500–$2,000+</span></td>
+          </tr>
+          <tr>
+            <td>Personal follow-up option</td>
+            <td class="col-daystar"><span class="cmp-yes">&#10003;</span></td>
+            <td><span class="cmp-no">&#10007;</span></td>
+            <td><span class="cmp-yes">&#10003;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="assessment.html" class="btn btn-gold btn-lg">Get Your Assessment &rarr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CTA STRIP
+════════════════════════════════════════════════════════════ -->
+<div class="cta-strip">
+  <div class="container">
+    <h3>Ready to know your score?</h3>
+    <a href="assessment.html" class="btn btn-gold btn-lg">Get Your Grow Assessment</a>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     AUTHORITY / SOCIAL PROOF
+════════════════════════════════════════════════════════════ -->
+<section class="authority-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Authority</span>
+      <h2>Built by a Cannabis Educator. Trusted by Growers.</h2>
+    </div>
+
+    <div class="author-block">
+      <div class="author-avatar" aria-hidden="true">LF</div>
+      <div class="author-info">
+        <h3>Lance Fisher</h3>
+        <span class="author-cred">Author &bull; Cannabis Cultivation Consultant &bull; Cannabis Educator</span>
+        <p>Lance Fisher is the author of <em>The Great Cannabinoid Disconnect</em> and has spent years developing cultivation frameworks used by home growers and commercial operators alike. The DayStar Grow Assessment is built on the same rubric he applies in paid consulting engagements.</p>
+      </div>
+    </div>
+
+    <!-- TODO: Replace [PLACEHOLDER] testimonials with real customer quotes before launch -->
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I thought my grow was dialed in until I saw my score. The lighting and VPD categories alone gave me three changes I implemented immediately. Yields jumped the next run."</p>
+        <div class="testimonial-author">[PLACEHOLDER] — J.M.</div>
+        <div class="testimonial-loc">Home Cultivator, Colorado</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"This isn't YouTube advice. It's a structured audit. Lance's note at the end was worth the price alone — he identified an issue I'd been ignoring for two cycles."</p>
+        <div class="testimonial-author">[PLACEHOLDER] — R.T.</div>
+        <div class="testimonial-loc">Small Commercial Operator, Oregon</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"The 15-minute debrief call exceeded every expectation. I came in with a 71 and left with a specific plan to hit 85+ by my next run. That's money."</p>
+        <div class="testimonial-author">[PLACEHOLDER] — A.K.</div>
+        <div class="testimonial-loc">Craft Grower, Michigan</div>
+      </div>
+    </div>
+
+    <div class="trust-badges">
+      <div class="trust-badge"><span class="badge-icon">★</span> Expert-Reviewed</div>
+      <div class="trust-badge"><span class="badge-icon">⚡</span> AI-Powered</div>
+      <div class="trust-badge"><span class="badge-icon">⏱</span> 24-Hour Turnaround</div>
+      <div class="trust-badge"><span class="badge-icon">🔒</span> Privacy First</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PRICING
+════════════════════════════════════════════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">One Simple Offer</span>
+      <h2>Everything You Need to Know Your Grow</h2>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-label">DayStar AI Grow Assessment</div>
+      <h3>The Complete Grow Audit</h3>
+      <div class="pricing-price">
+        <!-- TODO: Replace with real price -->
+        $[PRICE] <span class="price-note">one-time</span>
+      </div>
+      <ul class="pricing-list">
+        <li><span class="check">&#10003;</span><span>52-question expert intake form</span></li>
+        <li><span class="check">&#10003;</span><span>100-point AI-scored grow rubric</span></li>
+        <li><span class="check">&#10003;</span><span>7-category score breakdown with commentary</span></li>
+        <li><span class="check">&#10003;</span><span>Top 3 ranked, actionable recommendations</span></li>
+        <li><span class="check">&#10003;</span><span>Personal note from Lance Fisher</span></li>
+        <li><span class="check">&#10003;</span><span>Branded PDF report — 24-hour delivery</span></li>
+        <li><span class="check">&#10003;</span><span>Optional 15-min debrief call with Lance</span></li>
+      </ul>
+      <a href="assessment.html" class="btn btn-gold btn-lg" style="width:100%;text-align:center;justify-content:center;">
+        Get My Assessment Now
+      </a>
+      <p class="risk-reversal">If your report doesn't give you at least 3 actionable improvements, we'll refund you. No questions asked.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">FAQ</span>
+      <h2>Questions, Answered</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Who is this assessment for?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">The DayStar Grow Assessment is built for cannabis cultivators at any scale — from experienced home growers running a tent or spare room to small commercial operators looking for an objective third-party audit. If you're producing cannabis and want to understand where your grow stands against expert benchmarks, this is for you.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How long does the intake form take to complete?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Most growers complete the 52-question intake form in 10–20 minutes. Have your setup details handy — light specs, nutrient schedule, environmental data — and you'll move through it quickly.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">When do I receive my report?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Your branded PDF report is delivered within 24 hours of completing your intake form. In most cases you'll receive it same day. You'll get an email with your report attached and a link to schedule your optional 15-min debrief call.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is this for home growers or commercial operations?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Both. The rubric applies regardless of scale. Home growers benefit from seeing exactly where to invest limited time and money. Commercial operators benefit from an independent audit that identifies systemic gaps before they compound across multiple rooms or cycles.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What if I don't understand parts of the report?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">Every report is written to be clear and actionable — not buried in jargon. If you want to walk through your results in real time, the optional 15-minute debrief call with Lance is designed exactly for that. You'll leave the call knowing what to prioritize next.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How is this different from YouTube advice or online forums?<i class="faq-icon">+</i></button>
+        <div class="faq-a" role="region">YouTube and Reddit give you generalized information with no context about your specific grow. The DayStar Assessment is a scored rubric applied to your actual setup — not generic tips. You get a benchmark number, a ranked list of your highest-impact issues, and a document you can reference and act on. That's the difference between content and a consultation.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER  — 4-column layout (AC Infinity style)
+════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-upper">
+
+    <!-- Brand col -->
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+      <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
+    </div>
+
+    <!-- Services col -->
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="assessment.html">Grow Assessment</a></li>
+        <li><a href="sample.html">Sample Report</a></li>
+        <li><a href="contact.html">Private Consulting</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+
+    <!-- About col -->
+    <div class="footer-col">
+      <h5>About</h5>
+      <ul>
+        <li><a href="about.html">About Lance</a></li>
+        <li><a href="about.html#book">The Book</a></li>
+        <li><a href="about.html#mission">Our Mission</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- Connect col -->
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <!-- TODO: Add real social links -->
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal">
+      <!-- TODO: Add real legal pages -->
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Refund Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

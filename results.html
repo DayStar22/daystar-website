@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Grow Assessment Report — DayStar Cannabis Consulting</title>
+  <meta name="description" content="Your AI-powered DayStar Grow Assessment report with scores, grades, and actionable recommendations.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Results Page Styles ───────────────────────────── */
+    .results-hero {
+      background: var(--color-card);
+      border-bottom: 1px solid var(--color-border);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .results-hero h1 { color: var(--color-parchment); margin-bottom: 0.75rem; }
+    .results-hero h1 .accent { color: var(--color-gold); }
+    .results-hero p { color: var(--color-text-dim); max-width: 560px; margin: 0 auto; }
+
+    .results-wrap {
+      background: var(--color-bg);
+      padding: 3rem 1.5rem 5rem;
+    }
+    .results-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Loading state */
+    .results-loading {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .results-loading .spinner {
+      width: 48px; height: 48px;
+      border: 4px solid var(--color-border);
+      border-top-color: var(--color-gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .results-loading p {
+      color: var(--color-text-dim);
+      font-size: 1rem;
+      font-family: var(--font-heading);
+    }
+    .results-loading .loading-sub {
+      color: var(--color-text-dimmer);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      font-family: var(--font-heading);
+    }
+
+    /* Error state */
+    .results-error {
+      display: none;
+      background: rgba(180, 50, 50, 0.12);
+      border: 1.5px solid #b43232;
+      border-radius: var(--radius-lg);
+      color: #e07070;
+      padding: 2rem;
+      text-align: center;
+    }
+    .results-error.visible { display: block; }
+    .results-error h3 { color: #e07070; margin-bottom: 0.5rem; }
+    .results-error p { font-size: 0.9rem; }
+    .results-error a { color: var(--color-gold); }
+
+    /* Report content */
+    .results-report {
+      display: none;
+    }
+    .results-report.visible { display: block; }
+
+    .report-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .report-card h1 {
+      color: var(--color-gold);
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .report-card h2 {
+      color: var(--color-gold);
+      font-size: 1.2rem;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .report-card h3 {
+      color: var(--color-parchment);
+      font-size: 1.05rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .report-card p {
+      color: var(--color-parchment);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .report-card strong {
+      color: var(--color-gold);
+    }
+    .report-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+    }
+    .report-card ul li {
+      color: var(--color-parchment);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.35rem;
+    }
+    .report-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px; height: 6px;
+      background: var(--color-gold);
+      border-radius: 50%;
+    }
+    .report-card hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 1.5rem 0;
+    }
+    .report-card em {
+      color: var(--color-text-dim);
+    }
+
+    @media (max-width: 540px) {
+      .report-card { padding: 1.5rem 1.25rem; }
+    }
+
+    /* Action buttons */
+    .results-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .results-actions .btn-action {
+      flex: 1;
+      min-width: 200px;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-download {
+      background: var(--color-gold);
+      color: #111;
+      border: 2px solid var(--color-gold);
+    }
+    .btn-download:hover {
+      background: var(--color-gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 32px rgba(212,175,55,0.25);
+    }
+    .btn-email {
+      background: transparent;
+      color: var(--color-gold);
+      border: 2px solid var(--color-gold);
+    }
+    .btn-email:hover {
+      background: rgba(212,175,55,0.08);
+      transform: translateY(-2px);
+    }
+    .btn-back {
+      background: transparent;
+      color: var(--color-text-dim);
+      border: 2px solid var(--color-border);
+    }
+    .btn-back:hover {
+      color: var(--color-parchment);
+      border-color: var(--color-border-md);
+    }
+
+    /* ── Print Styles ───────────────────────────────────── */
+    @media print {
+      body { background: #fff !important; color: #111 !important; }
+      .announce-bar, .nav, .nav-mobile, .results-hero,
+      .results-actions, .footer, .results-loading,
+      .results-error { display: none !important; }
+
+      .results-wrap { padding: 0 !important; background: #fff !important; }
+      .results-inner { max-width: 100% !important; }
+
+      .report-card {
+        background: #fff !important;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        padding: 1.5rem !important;
+        page-break-inside: avoid;
+      }
+      .report-card h1 { color: #2D5A27 !important; font-size: 1.4rem !important; }
+      .report-card h2 { color: #2D5A27 !important; border-color: #ddd !important; }
+      .report-card h3 { color: #111 !important; }
+      .report-card p, .report-card ul li { color: #222 !important; }
+      .report-card strong { color: #2D5A27 !important; }
+      .report-card ul li::before { background: #2D5A27 !important; }
+      .report-card hr { border-color: #ddd !important; }
+
+      /* Print header */
+      .results-inner::before {
+        content: 'DayStar Cannabis Consulting — Grow Assessment Report';
+        display: block;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: #2D5A27;
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 2px solid #D4AF37;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar" id="announce-bar">
+  <div class="announce-inner">
+    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <a href="assessment.html" class="announce-link">Learn More &rarr;</a>
+  </div>
+  <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="DayStar Home">
+      <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+        <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+        <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+        <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+        <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+        <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+        <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+        <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+        <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+        <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+      </svg>
+      <div class="nav-wordmark"><span class="wm-name">DAYSTAR</span><span class="wm-sub">CONSULTING</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+      <li><a href="sample.html">Sample Report</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="assessment.html" class="btn btn-gold">Get Assessment</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-modal="true">
+  <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="assessment.html">Assessment</a>
+  <a href="sample.html">Sample Report</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+
+<!-- HERO -->
+<section class="results-hero">
+  <span class="section-eyebrow">AI-Powered Assessment</span>
+  <h1>Your <span class="accent">Grow Report</span></h1>
+  <p>Your personalized grow assessment scored by AI using our 100-point rubric across 7 critical categories.</p>
+</section>
+
+
+<!-- RESULTS -->
+<div class="results-wrap">
+  <div class="results-inner">
+
+    <!-- Loading spinner -->
+    <div class="results-loading" id="results-loading">
+      <div class="spinner"></div>
+      <p>Analyzing your grow data...</p>
+      <p class="loading-sub">Our AI is scoring your 52 answers across 7 categories. This takes about 15–30 seconds.</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="results-error" id="results-error">
+      <h3>Report Generation Failed</h3>
+      <p id="results-error-text">Something went wrong while generating your report. Please try again or contact Lance at <a href="mailto:lancefisher51@gmail.com">lancefisher51@gmail.com</a>.</p>
+    </div>
+
+    <!-- Report content -->
+    <div class="results-report" id="results-report">
+      <div class="report-card" id="report-content">
+        <!-- AI report will be inserted here -->
+      </div>
+
+      <div class="results-actions">
+        <button class="btn-action btn-download" id="btn-download" onclick="window.print()">
+          Download Report (PDF)
+        </button>
+        <a class="btn-action btn-email" id="btn-email" href="#">
+          Email My Report
+        </a>
+        <a class="btn-action btn-back" href="intake-form.html">
+          Start New Assessment
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-upper">
+    <div class="footer-brand-col">
+      <div class="footer-brand-row">
+        <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="100,5 105,52 100,100 95,52"    fill="#D4AF37"/>
+          <polygon points="195,100 148,105 100,100 148,95" fill="#D4AF37"/>
+          <polygon points="100,195 95,148 100,100 105,148" fill="#D4AF37"/>
+          <polygon points="5,100 52,95 100,100 52,105"    fill="#D4AF37"/>
+          <polygon points="150,50 122,86 100,100 115,79"   fill="#2D5A27"/>
+          <polygon points="150,150 132,139 100,100 139,132" fill="#2D5A27"/>
+          <polygon points="50,150 78,114 100,100 85,121"   fill="#2D5A27"/>
+          <polygon points="50,50 68,61 100,100 61,68"      fill="#2D5A27"/>
+          <circle cx="100" cy="100" r="9" fill="#D4AF37"/>
+          <circle cx="100" cy="100" r="4" fill="#1B1F1C"/>
+        </svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:0.92rem;color:#D4AF37;letter-spacing:0.12em;">DAYSTAR</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:0.54rem;color:#3a7533;letter-spacing:0.2em;font-weight:700;">CONSULTING</div>
+        </div>
+      </div>
+      <p class="footer-tagline">Your Growth, Guided.</p>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-lower">
+    <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="report.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var loadingEl = document.getElementById('results-loading');
+  var errorEl   = document.getElementById('results-error');
+  var errorText = document.getElementById('results-error-text');
+  var reportEl  = document.getElementById('results-report');
+  var contentEl = document.getElementById('report-content');
+  var emailBtn  = document.getElementById('btn-email');
+
+  // Retrieve stored form data
+  var storedAnswers = sessionStorage.getItem('ds-report-answers');
+  var storedEmail   = sessionStorage.getItem('ds-report-email');
+  var storedName    = sessionStorage.getItem('ds-report-name');
+
+  if (!storedAnswers) {
+    loadingEl.style.display = 'none';
+    errorEl.classList.add('visible');
+    errorText.innerHTML = 'No assessment data found. Please <a href="intake-form.html" style="color:var(--color-gold);">complete the intake form</a> first.';
+    return;
+  }
+
+  // Call AI to generate report
+  generateReport(storedAnswers)
+    .then(function (reportMarkdown) {
+      // Store raw markdown for email
+      sessionStorage.setItem('ds-report-markdown', reportMarkdown);
+
+      // Convert to HTML and display
+      contentEl.innerHTML = markdownToHtml(reportMarkdown);
+      loadingEl.style.display = 'none';
+      reportEl.classList.add('visible');
+
+      // Set up email button
+      if (storedEmail) {
+        var plainText = markdownToPlainText(reportMarkdown);
+        var subject = 'Your DayStar Grow Assessment Report';
+        var body = 'Hi ' + (storedName || 'there') + ',\n\nHere is your DayStar Grow Assessment Report:\n\n' + plainText + '\n\n---\nDayStar Cannabis Education & Consulting\nhttps://daystarconsulting.com';
+        emailBtn.href = 'mailto:' + encodeURIComponent(storedEmail) +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+      } else {
+        emailBtn.style.display = 'none';
+      }
+    })
+    .catch(function (err) {
+      loadingEl.style.display = 'none';
+      errorEl.classList.add('visible');
+      errorText.innerHTML = 'Error generating report: ' + err.message + '<br><br>Please try again or contact Lance at <a href="mailto:lancefisher51@gmail.com" style="color:var(--color-gold);">lancefisher51@gmail.com</a>.';
+    });
+})();
+</script>
+</body>
+</html>
