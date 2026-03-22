@@ -30,7 +30,11 @@ module.exports = function (req, res) {
     let data = '';
     apiRes.on('data', function (chunk) { data += chunk; });
     apiRes.on('end', function () {
-      res.status(apiRes.statusCode).json(JSON.parse(data));
+      try {
+        res.status(apiRes.statusCode).json(JSON.parse(data));
+      } catch (e) {
+        res.status(502).json({ error: 'Invalid response from API', detail: data.substring(0, 200) });
+      }
     });
   });
 
