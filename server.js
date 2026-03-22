@@ -6,7 +6,7 @@ const fs    = require('fs');
 const path  = require('path');
 
 const PORT = process.env.PORT || 3000;
-const ROOT = __dirname;
+const ROOT = path.resolve(__dirname);
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 
 const MIME = {
@@ -22,6 +22,9 @@ const MIME = {
   '.woff2':'font/woff2',
 };
 
+/* ── System prompt (hardcoded server-side) ──────────────────── */
+var SYSTEM_PROMPT = "You are a cannabis grow assessment expert. Score the following grow data using this 7-category rubric totaling 100 points: Lighting (20pts), Environment & VPD (20pts), Nutrition & Water Quality (15pts), Growing Medium & Root Zone (10pts), Genetics & Strain Fit (10pts), Pest/Disease/Contamination Risk (15pts), Harvest Readiness & Post-Harvest (10pts). Return a structured report with: overall score, letter grade, per-category scores, and top 3 actionable recommendations. Format cleanly using markdown with headers (##), bold, and bullet points.";
+
 http.createServer(function (req, res) {
   // --- API proxy endpoint ---
   if (req.method === 'POST' && req.url === '/api/report') {
@@ -34,7 +37,31 @@ http.createServer(function (req, res) {
     let body = '';
     req.on('data', function (chunk) { body += chunk; });
     req.on('end', function () {
-      const postData = JSON.stringify(JSON.parse(body));
+      /* ── Parse safely ──────────────────────────────────── */
+      var parsed;
+      try {
+        parsed = JSON.parse(body);
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid JSON' }));
+        return;
+      }
+
+      /* ── Validate & rebuild payload ────────────────────── */
+      if (!parsed || !parsed.messages || !Array.isArray(parsed.messages) || parsed.messages.length < 1) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid request body' }));
+        return;
+      }
+
+      var userContent = String(parsed.messages[0].content || '').substring(0, 15000);
+      const postData = JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 4096,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: userContent }]
+      });
+
       const options = {
         hostname: 'api.anthropic.com',
         path: '/v1/messages',
@@ -57,8 +84,9 @@ http.createServer(function (req, res) {
       });
 
       apiReq.on('error', function (err) {
+        console.error('Upstream API error:', err.message);
         res.writeHead(502, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Upstream API error: ' + err.message }));
+        res.end(JSON.stringify({ error: 'Report generation failed. Please try again.' }));
       });
 
       apiReq.write(postData);
@@ -72,6 +100,14 @@ http.createServer(function (req, res) {
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
   const filePath = path.join(ROOT, urlPath);
+
+  // Path traversal protection: ensure resolved path stays within ROOT
+  if (!path.resolve(filePath).startsWith(ROOT)) {
+    res.writeHead(403, { 'Content-Type': 'text/html' });
+    res.end('<h1>403 Forbidden</h1>');
+    return;
+  }
+
   const ext      = path.extname(filePath).toLowerCase();
   const ct       = MIME[ext] || 'application/octet-stream';
 

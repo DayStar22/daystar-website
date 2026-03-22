@@ -8,6 +8,7 @@
 
   /* ── Google Sheets Webhook URL ─────────────────────────────── */
   var WEBHOOK_URL = 'REPLACE_WITH_APPS_SCRIPT_URL';
+  var WEBHOOK_CONFIGURED = WEBHOOK_URL.indexOf('REPLACE') === -1;
 
   /* ── Announcement Bar ────────────────────────────────────── */
   var announceBar   = document.getElementById('announce-bar');
@@ -101,6 +102,10 @@
   ══════════════════════════════════════════════════════════ */
 
   function submitToWebhook(data) {
+    if (!WEBHOOK_CONFIGURED) {
+      console.warn('Webhook URL not configured — form submission skipped.');
+      return Promise.reject(new Error('Webhook not configured'));
+    }
     return fetch(WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -141,7 +146,7 @@
         btn.disabled    = false;
         btn.textContent = 'Send Message';
         if (errorMsg) {
-          errorMsg.innerHTML = '\u274C Something went wrong. Email us at <a href="mailto:hello@daystarcannabis.com" style="color:var(--color-gold);">hello@daystarcannabis.com</a>';
+          errorMsg.innerHTML = '\u274C Something went wrong. Email us at <a href="mailto:daystargreenery@yahoo.com" style="color:var(--color-gold);">daystargreenery@yahoo.com</a>';
           errorMsg.style.display = 'block';
         }
       });
@@ -179,7 +184,7 @@
       })
       .catch(function () {
         if (msgEl) {
-          msgEl.innerHTML = '\u274C Something went wrong. Email us at <a href="mailto:hello@daystarcannabis.com" style="color:#D4AF37;">hello@daystarcannabis.com</a>';
+          msgEl.innerHTML = '\u274C Something went wrong. Email us at <a href="mailto:daystargreenery@yahoo.com" style="color:#D4AF37;">daystargreenery@yahoo.com</a>';
           msgEl.style.display = 'block';
           msgEl.style.color = '#e07070';
         }

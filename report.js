@@ -83,9 +83,23 @@ function generateReport(answersText) {
 }
 
 /**
+ * Escape HTML entities to prevent XSS.
+ */
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
  * Convert markdown report text to HTML.
+ * Input is escaped first to prevent XSS from AI-generated content.
  */
 function markdownToHtml(md) {
+  md = escapeHtml(md);
   return md
     // Headers
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')

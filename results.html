@@ -312,7 +312,7 @@
     <!-- Error state -->
     <div class="results-error" id="results-error">
       <h3>Report Generation Failed</h3>
-      <p id="results-error-text">Something went wrong while generating your report. Please try again or contact Lance at <a href="mailto:lancefisher51@gmail.com">lancefisher51@gmail.com</a>.</p>
+      <p id="results-error-text">Something went wrong while generating your report. Please try again or contact Lance at <a href="mailto:daystargreenery@yahoo.com">daystargreenery@yahoo.com</a>.</p>
     </div>
 
     <!-- Report content -->
@@ -423,7 +423,10 @@
     .catch(function (err) {
       loadingEl.style.display = 'none';
       errorEl.classList.add('visible');
-      errorText.innerHTML = 'Error generating report: ' + err.message + '<br><br>Please try again or contact Lance at <a href="mailto:lancefisher51@gmail.com" style="color:var(--color-gold);">lancefisher51@gmail.com</a>.';
+      errorText.textContent = 'Error generating report: ' + err.message;
+      var helpLink = document.createElement('span');
+      helpLink.innerHTML = '<br><br>Please try again or contact Lance at <a href="mailto:daystargreenery@yahoo.com" style="color:var(--color-gold);">daystargreenery@yahoo.com</a>.';
+      errorText.appendChild(helpLink);
     });
 })();
 </script>
