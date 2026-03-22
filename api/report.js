@@ -1,4 +1,5 @@
 const https = require('https');
+// Trigger redeploy — 2026-03-22
 
 module.exports = function (req, res) {
   // DEBUG: Safe diagnostics for missing ANTHROPIC_API_KEY
