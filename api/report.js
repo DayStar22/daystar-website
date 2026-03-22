@@ -1,6 +1,10 @@
 const https = require('https');
 
 module.exports = function (req, res) {
+  // DEBUG: Log all available env var keys (not values) to diagnose missing ANTHROPIC_API_KEY
+  console.log('[DEBUG] Available process.env keys:', Object.keys(process.env).sort().join(', '));
+  console.log('[DEBUG] ANTHROPIC_API_KEY present:', !!process.env.ANTHROPIC_API_KEY);
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
