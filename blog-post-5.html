@@ -25,7 +25,12 @@
     .blog-post-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #F4F1EA; margin-bottom: 1rem; }
     .blog-post-cta a { display: inline-block; background: #D4AF37; color: #1B1F1C; font-family: 'Inter', sans-serif; font-weight: 700; padding: 0.85rem 2rem; border-radius: 4px; text-decoration: none; }
     .blog-post-cta a:hover { background: #E8C850; }
-    @media(max-width:600px){ .blog-post-wrap h1 { font-size: 1.6rem; } }
+    .blog-share-bar { display: flex; align-items: center; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); flex-wrap: wrap; }
+    .blog-share-label { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #F4F1EA; opacity: 0.7; }
+    .blog-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(212,175,55,0.15); color: #D4AF37; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; font-size: 0.85rem; }
+    .blog-share-btn:hover { background: rgba(212,175,55,0.3); }
+    .blog-share-copy { width: auto; border-radius: 18px; padding: 0 1rem; font-family: 'Inter', sans-serif; font-size: 0.78rem; }
+    @media(max-width:600px){ .blog-post-wrap h1 { font-size: 1.6rem; } .blog-share-bar { justify-content: center; } }
   </style>
 </head>
 <body>
@@ -33,7 +38,7 @@
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar" id="announce-bar">
   <div class="announce-inner">
-    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <span>Limited time: free 15-min expert debrief call included with every growth report.</span>
     <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="announce-link">Get Yours &rarr;</a>
   </div>
   <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
@@ -64,7 +69,7 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold">Get Assessment</a>
+      <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold">Get Growth Report</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
@@ -76,7 +81,7 @@
   <a href="blog.html">Blog</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
-  <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold btn-lg">Get Assessment</a>
+  <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold btn-lg">Get Growth Report</a>
 </div>
 
 <main class="blog-post-wrap">
@@ -135,9 +140,16 @@
 
   <p>Your genetics are the foundation of everything you grow. Stop building on someone else's unverified claims.</p>
 
+  <div class="blog-share-bar">
+    <span class="blog-share-label">Share this article:</span>
+    <a href="#" class="blog-share-btn" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(window.location.href),'_blank','width=550,height=420');return false;" aria-label="Share on X" title="Share on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="#" class="blog-share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank','width=550,height=420');return false;" aria-label="Share on Facebook" title="Share on Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <button class="blog-share-btn blog-share-copy" onclick="navigator.clipboard.writeText(window.location.href).then(function(){var b=this;b.textContent=String.fromCodePoint(9989)+' Copied!';setTimeout(function(){b.textContent=String.fromCodePoint(128279)+' Copy Link'},2000)}.bind(this))" aria-label="Copy link" title="Copy link">&#128279; Copy Link</button>
+  </div>
+
   <div class="blog-post-cta">
     <h3>Know exactly where your grow stands.</h3>
-    <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000">Get your DayStar Assessment &rarr;</a>
+    <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000">Get your Growth Report &rarr;</a>
   </div>
 </main>
 
@@ -165,13 +177,16 @@
       <p class="footer-tagline">Your Growth, Guided.</p>
       <p class="footer-brand-desc">Expert-level cultivation intelligence for every grower — not just those who can afford a $500/hr consultant.</p>
     </div>
-    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Analysis</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
     <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="about.html#book">The Book</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://www.instagram.com/daystar_consulting" target="_blank" rel="noopener">📷 Instagram</a></li><li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">𝕏 Twitter</a></li><li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">📘 Facebook</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="https://www.instagram.com/daystar_cannabis_consulting" target="_blank" rel="noopener">📷 Instagram</a></li><li><a href="https://x.com/daystargreenery" target="_blank" rel="noopener">𝕏 Twitter</a></li><li><a href="https://www.facebook.com/DayStarGreenery" target="_blank" rel="noopener">📘 Facebook</a></li></ul></div>
   </div>
   <div class="footer-lower">
     <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
     <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Refund Policy</a></div>
+  </div>
+  <div class="footer-disclaimer" style="padding:1.5rem 1.5rem 0;max-width:800px;margin:0 auto;">
+    <p style="font-size:0.72rem;color:var(--color-text-dimmer);line-height:1.6;text-align:center;">DayStar Cannabis Education &amp; Consulting provides educational information only. We do not sell, distribute, or facilitate the sale of cannabis. Users are responsible for compliance with all applicable local, state, and federal laws. DayStar is not liable for any actions taken based on information provided.</p>
   </div>
 </footer>
 

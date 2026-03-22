@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grow Assessment Intake Form — DayStar Cannabis Consulting</title>
-  <meta name="description" content="Complete your DayStar AI Grow Assessment intake form. 52 questions covering lighting, environment, nutrients, genetics, pest management, and harvest.">
+  <title>Grow Analysis Intake Form — DayStar Cannabis Consulting</title>
+  <meta name="description" content="Complete your DayStar AI Grow Analysis intake form. 52 questions covering lighting, environment, nutrients, genetics, pest management, and harvest.">
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ── Intake Form Page Styles ───────────────────────── */
@@ -242,7 +242,7 @@
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar" id="announce-bar">
   <div class="announce-inner">
-    <span>Limited time: free 15-min expert debrief call included with every assessment.</span>
+    <span>Limited time: free 15-min expert debrief call included with every growth report.</span>
     <a href="assessment.html" class="announce-link">Learn More &rarr;</a>
   </div>
   <button class="announce-close" id="announce-close" aria-label="Dismiss">&times;</button>
@@ -275,7 +275,7 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold active">Get Assessment</a>
+      <a href="https://buy.stripe.com/6oUbITcpz1YL72X85Lco000" class="btn btn-gold active">Get Growth Report</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
@@ -295,7 +295,7 @@
 <section class="intake-hero">
   <span class="section-eyebrow">52-Question Intake Form</span>
   <h1>Tell Us About <span class="accent">Your Grow</span></h1>
-  <p>Answer honestly — there are no wrong answers. The more detail you provide, the more accurate and useful your scored report will be. Takes about 15 minutes.</p>
+  <p>Answer honestly — there are no wrong answers. The more detail you provide, the more accurate and useful your growth report will be. Takes about 15 minutes.</p>
 </section>
 
 
@@ -355,7 +355,7 @@
         <div class="intake-section-num">1</div>
         <div>
           <p class="intake-section-title">Grow Setup &amp; Experience</p>
-          <p class="intake-section-sub">8 questions — the basics of your operation</p>
+          <p class="intake-section-sub">11 questions — the basics of your operation</p>
         </div>
       </div>
       <div class="intake-section-body">
@@ -429,6 +429,29 @@
         <div class="intake-q" data-q>
           <label for="q8">How many complete grows have you finished in your current setup?</label>
           <input type="number" id="q8" name="q8_grows_completed" placeholder="e.g. 3" min="0">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q8b_strain">Strain name(s) <span style="color:var(--color-text-dim);font-weight:400;">(optional)</span></label>
+          <span class="q-hint">List the strain(s) you're currently growing.</span>
+          <input type="text" id="q8b_strain" name="q8b_strain_name" placeholder="e.g. Blue Dream, Gorilla Glue #4">
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q8c_genetics">Genetics type</label>
+          <span class="q-hint">This affects lighting and timeline recommendations.</span>
+          <select id="q8c_genetics" name="q8c_genetics_type">
+            <option value="" disabled selected>Select genetics type</option>
+            <option value="Photoperiod">Photoperiod</option>
+            <option value="Autoflower">Autoflower</option>
+            <option value="Both">Both (mixed garden)</option>
+            <option value="Unknown">Unknown / Not sure</option>
+          </select>
+        </div>
+
+        <div class="intake-q" data-q>
+          <label for="q8d_breeder">Breeder / seed bank <span style="color:var(--color-text-dim);font-weight:400;">(optional)</span></label>
+          <input type="text" id="q8d_breeder" name="q8d_breeder" placeholder="e.g. Ethos Genetics, Mephisto">
         </div>
 
       </div>
@@ -646,13 +669,15 @@
         </div>
 
         <div class="intake-q" data-q>
-          <label for="q30">What is your typical runoff (or reservoir) pH? <span class="req">*</span></label>
-          <input type="text" id="q30" name="q30_runoff_ph" placeholder="e.g. 6.2–6.5" required>
+          <label for="q30">What is your typical runoff (or reservoir) pH?</label>
+          <span class="q-hint">Skip if using no-till living soil or organic methods that don't require pH adjustment</span>
+          <input type="text" id="q30" name="q30_runoff_ph" placeholder="e.g. 6.2–6.5 (optional)">
         </div>
 
         <div class="intake-q" data-q>
           <label for="q31">What is your typical runoff (or reservoir) EC / PPM?</label>
-          <input type="text" id="q31" name="q31_runoff_ec" placeholder="e.g. 1.8 EC / 900 PPM">
+          <span class="q-hint">Skip if using no-till living soil or organic methods that don't require EC monitoring</span>
+          <input type="text" id="q31" name="q31_runoff_ec" placeholder="e.g. 1.8 EC / 900 PPM (optional)">
         </div>
 
         <div class="intake-q" data-q>
@@ -708,8 +733,9 @@
         </div>
 
         <div class="intake-q" data-q>
-          <label for="q37">What pH do you target when feeding? <span class="req">*</span></label>
-          <input type="text" id="q37" name="q37_feed_ph" placeholder="e.g. 6.0–6.5 for soil, 5.8–6.2 for coco/hydro" required>
+          <label for="q37">What pH do you target when feeding?</label>
+          <span class="q-hint">Skip if using no-till living soil or organic methods that don't require pH adjustment</span>
+          <input type="text" id="q37" name="q37_feed_ph" placeholder="e.g. 6.0–6.5 for soil, 5.8–6.2 for coco/hydro (optional)">
         </div>
 
         <div class="intake-q" data-q>
@@ -897,12 +923,45 @@
     </div><!-- /section 7 -->
 
 
+    <!-- ── PHOTO UPLOAD ────────────────────────────────── -->
+    <div class="intake-section" id="photo-upload-section">
+      <div class="intake-section-header">
+        <span class="intake-section-num">8</span>
+        <div>
+          <h2 class="intake-section-title">Grow Photos</h2>
+          <p class="intake-section-desc">Upload photos for visual diagnostics</p>
+        </div>
+      </div>
+      <div class="intake-section-body">
+        <div class="intake-q">
+          <label class="q-label">Upload up to <span id="photo-limit-text">3</span> photos of your grow <span style="color:var(--color-text-dim);font-weight:400;">(optional but recommended)</span></label>
+          <span class="q-hint">Best photos: full canopy shot, close-up of leaves, close-up of buds/flowers. Accepted: JPG, PNG, HEIC. Max 10MB each.</span>
+          <div id="photo-upload-area" style="margin-top:1rem;">
+            <div id="photo-previews" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;"></div>
+            <label id="photo-add-btn" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;background:rgba(212,175,55,0.1);border:2px dashed var(--color-gold);border-radius:8px;color:var(--color-gold);font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:background 0.2s;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              Add Photo
+              <input type="file" id="photo-input" accept="image/jpeg,image/png,image/heic" multiple style="display:none;">
+            </label>
+            <div id="photo-error" style="color:#e74c3c;font-size:0.82rem;margin-top:0.5rem;display:none;"></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /photo upload -->
+
+
     <!-- ── SUBMIT ──────────────────────────────────────── -->
     <div class="intake-submit-block">
       <h3>Ready to Submit Your Grow Profile?</h3>
-      <p>Once submitted, our AI will instantly analyze your answers using a 100-point rubric and generate your personalized grow report.</p>
+      <p>Once submitted, our AI will instantly analyze your answers across 7 expert categories and generate your Personalized Growth Report.</p>
+      <div style="margin-bottom:1.5rem;text-align:left;">
+        <label style="display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;font-size:0.82rem;color:var(--color-text-dim);line-height:1.5;">
+          <input type="checkbox" id="legal-acknowledge" required style="margin-top:0.2rem;accent-color:var(--color-gold);min-width:18px;min-height:18px;">
+          <span>I acknowledge that DayStar provides educational guidance only and I am responsible for complying with all applicable laws in my jurisdiction.</span>
+        </label>
+      </div>
       <button type="submit" class="intake-submit-btn" id="intake-submit-btn">
-        Generate My Grow Report &rarr;
+        Generate My Growth Report &rarr;
       </button>
       <div class="intake-error-msg" id="intake-error-msg">
         Something went wrong sending your form. Please try again or email Lance directly at <a href="mailto:daystargreenery@yahoo.com" style="color:var(--color-gold);">daystargreenery@yahoo.com</a>.
@@ -940,13 +999,16 @@
       </div>
       <p class="footer-tagline">Your Growth, Guided.</p>
     </div>
-    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Assessment</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="assessment.html">Grow Analysis</a></li><li><a href="sample.html">Sample Report</a></li><li><a href="contact.html">Private Consulting</a></li></ul></div>
     <div class="footer-col"><h5>About</h5><ul><li><a href="about.html">About Lance</a></li><li><a href="blog.html">Blog</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
   </div>
   <div class="footer-lower">
     <p class="footer-copy">&copy; 2026 DayStar Cannabis Education &amp; Consulting. All rights reserved.</p>
     <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+  <div class="footer-disclaimer" style="padding:1.5rem 1.5rem 0;max-width:800px;margin:0 auto;">
+    <p style="font-size:0.72rem;color:var(--color-text-dimmer);line-height:1.6;text-align:center;">DayStar Cannabis Education &amp; Consulting provides educational information only. We do not sell, distribute, or facilitate the sale of cannabis. Users are responsible for compliance with all applicable local, state, and federal laws. DayStar is not liable for any actions taken based on information provided.</p>
   </div>
 </footer>
 
@@ -957,7 +1019,7 @@
   'use strict';
 
   /* ── Progress bar ──────────────────────────────────── */
-  var TOTAL_Q = 52;
+  var TOTAL_Q = 55;
   var form     = document.getElementById('intake-form');
   var fill     = document.getElementById('progress-fill');
   var label    = document.getElementById('progress-text');
@@ -988,6 +1050,56 @@
   form.addEventListener('input',  updateProgress);
   updateProgress();
 
+  /* ── Photo upload handler ────────────────────────────── */
+  var photoInput    = document.getElementById('photo-input');
+  var photoPreviews = document.getElementById('photo-previews');
+  var photoError    = document.getElementById('photo-error');
+  var photoAddBtn   = document.getElementById('photo-add-btn');
+  var photoFiles    = [];
+  var MAX_PHOTOS    = 3;
+  var MAX_SIZE_MB   = 10;
+
+  function renderPhotoPreviews() {
+    photoPreviews.innerHTML = '';
+    photoFiles.forEach(function (file, idx) {
+      var wrap = document.createElement('div');
+      wrap.style.cssText = 'position:relative;width:100px;height:100px;border-radius:8px;overflow:hidden;border:1px solid var(--color-border);';
+      var img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+      img.onload = function () { URL.revokeObjectURL(img.src); };
+      var rm = document.createElement('button');
+      rm.type = 'button';
+      rm.textContent = '\u00D7';
+      rm.style.cssText = 'position:absolute;top:2px;right:2px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.7);color:#fff;border:none;cursor:pointer;font-size:14px;line-height:1;';
+      rm.onclick = function () { photoFiles.splice(idx, 1); renderPhotoPreviews(); };
+      wrap.appendChild(img);
+      wrap.appendChild(rm);
+      photoPreviews.appendChild(wrap);
+    });
+    photoAddBtn.style.display = photoFiles.length >= MAX_PHOTOS ? 'none' : 'inline-flex';
+  }
+
+  photoInput.addEventListener('change', function () {
+    photoError.style.display = 'none';
+    var files = Array.from(photoInput.files);
+    for (var i = 0; i < files.length; i++) {
+      if (photoFiles.length >= MAX_PHOTOS) {
+        photoError.textContent = 'Maximum ' + MAX_PHOTOS + ' photos allowed.';
+        photoError.style.display = 'block';
+        break;
+      }
+      if (files[i].size > MAX_SIZE_MB * 1024 * 1024) {
+        photoError.textContent = '"' + files[i].name + '" exceeds 10MB limit.';
+        photoError.style.display = 'block';
+        continue;
+      }
+      photoFiles.push(files[i]);
+    }
+    photoInput.value = '';
+    renderPhotoPreviews();
+  });
+
   /* ── Form submission → AI report pipeline ──────────── */
   var submitBtn  = document.getElementById('intake-submit-btn');
   var errorEl    = document.getElementById('intake-error-msg');
@@ -1008,6 +1120,22 @@
     sessionStorage.setItem('ds-report-answers', answersText);
     sessionStorage.setItem('ds-report-email', email);
     sessionStorage.setItem('ds-report-name', name);
+
+    // Store photo count info (photos are client-side only for now)
+    sessionStorage.setItem('ds-report-photos', String(photoFiles.length));
+
+    // Log customer submission to backend (fire and forget — don't block redirect)
+    var mediumEl = document.querySelector('input[name="q26_medium"]:checked');
+    var growType = mediumEl ? mediumEl.value : '';
+    fetch('/api/customers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        grow_type: growType
+      })
+    }).catch(function () { /* silent fail — don't block the user */ });
 
     // Redirect to results page where the AI call happens
     window.location.href = 'results.html';

@@ -195,6 +195,46 @@
   }
 
 
+  /* ── Pilot Grower Signup Form (index.html) ─────────────── */
+  var pilotForm = document.getElementById('pilot-signup-form');
+  if (pilotForm) {
+    pilotForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msgEl = document.getElementById('pilot-signup-msg');
+      var btn   = pilotForm.querySelector('button[type="submit"]');
+
+      btn.textContent = 'Sending\u2026';
+      btn.disabled = true;
+
+      var formData = {
+        email:     pilotForm.querySelector('[name="email"]').value,
+        source:    'pilot-grower-signup',
+        timestamp: new Date().toISOString()
+      };
+
+      submitToWebhook(formData)
+      .then(function () {
+        if (msgEl) {
+          msgEl.textContent = '\u2705 You\u2019re in! We\u2019ll reach out soon with your free Growth Report.';
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#2D5A27';
+        }
+        pilotForm.reset();
+        btn.textContent = 'Claimed \u2713';
+      })
+      .catch(function () {
+        if (msgEl) {
+          msgEl.innerHTML = '\u274C Something went wrong. Email us at <a href="mailto:daystargreenery@yahoo.com" style="color:#D4AF37;">daystargreenery@yahoo.com</a>';
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#e07070';
+        }
+        btn.disabled = false;
+        btn.textContent = 'Claim My Spot';
+      });
+    });
+  }
+
+
   /* ══════════════════════════════════════════════════════════
      SCROLL REVEAL — IntersectionObserver
   ══════════════════════════════════════════════════════════ */
@@ -369,5 +409,131 @@
     }
     lerpCursor();
   }
+
+
+  /* ── Scroll Entrance Animations ──────────────────────────── */
+  (function initScrollAnimations() {
+    // Respect prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Inject animation CSS
+    var style = document.createElement('style');
+    style.textContent = [
+      '.ds-animate { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }',
+      '.ds-animate.ds-visible { opacity: 1; transform: translateY(0); }',
+      '.ds-animate-delay-1 { transition-delay: 0.1s; }',
+      '.ds-animate-delay-2 { transition-delay: 0.2s; }',
+      '.ds-animate-delay-3 { transition-delay: 0.3s; }'
+    ].join('\n');
+    document.head.appendChild(style);
+
+    // Target elements for animation
+    var selectors = [
+      '.section-header',
+      '.feature-card',
+      '.blog-card',
+      '.cta-strip',
+      '.intake-section',
+      '.blog-post-cta',
+      '.sidebar-cta',
+      '.results-share-panel',
+      '.page-header'
+    ];
+
+    var elements = document.querySelectorAll(selectors.join(','));
+    elements.forEach(function (el, i) {
+      el.classList.add('ds-animate');
+      var siblings = el.parentElement ? Array.from(el.parentElement.children).filter(function (c) { return c.classList.contains('ds-animate'); }) : [];
+      var idx = siblings.indexOf(el);
+      if (idx > 0 && idx < 4) el.classList.add('ds-animate-delay-' + idx);
+    });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('ds-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      elements.forEach(function (el) { observer.observe(el); });
+    } else {
+      elements.forEach(function (el) { el.classList.add('ds-visible'); });
+    }
+  })();
+
+
+  /* ── Hero Parallax Effect ──────────────────────────────── */
+  (function initHeroParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    var heroVisual = hero.querySelector('.hero-visual');
+    var heroContent = hero.querySelector('.hero-content');
+    if (!heroVisual && !heroContent) return;
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var scrollY = window.pageYOffset;
+          var heroH = hero.offsetHeight;
+          if (scrollY < heroH) {
+            var rate = scrollY * 0.3;
+            if (heroVisual) heroVisual.style.transform = 'translateY(' + (rate * 0.5) + 'px)';
+            if (heroContent) heroContent.style.transform = 'translateY(' + (rate * 0.15) + 'px)';
+            hero.style.opacity = String(1 - (scrollY / heroH) * 0.4);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+
+
+  /* ── Loading Progress Bar (for results page) ───────────── */
+  (function initLoadingProgress() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var loadingEl = document.getElementById('results-loading');
+    if (!loadingEl) return;
+
+    var existing = loadingEl.querySelector('.ds-progress-bar');
+    if (existing) return;
+
+    var bar = document.createElement('div');
+    bar.className = 'ds-progress-bar';
+    bar.style.cssText = 'width:280px;max-width:80%;height:4px;background:rgba(212,175,55,0.15);border-radius:2px;margin:1.5rem auto 0;overflow:hidden;';
+    var fill = document.createElement('div');
+    fill.style.cssText = 'width:0%;height:100%;background:linear-gradient(90deg,#D4AF37,#E8C850);border-radius:2px;transition:width 0.4s ease-out;';
+    bar.appendChild(fill);
+    loadingEl.appendChild(bar);
+
+    var progress = 0;
+    var interval = setInterval(function () {
+      if (progress < 85) {
+        progress += Math.random() * 8 + 2;
+        if (progress > 85) progress = 85;
+        fill.style.width = progress + '%';
+      }
+    }, 500);
+
+    var reportEl = document.getElementById('results-report');
+    if (reportEl) {
+      var checkDone = setInterval(function () {
+        if (reportEl.classList.contains('visible')) {
+          clearInterval(interval);
+          clearInterval(checkDone);
+          fill.style.width = '100%';
+          setTimeout(function () { bar.style.opacity = '0'; }, 400);
+        }
+      }, 200);
+    }
+  })();
 
 })();

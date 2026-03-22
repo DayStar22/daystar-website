@@ -23,7 +23,10 @@ const MIME = {
 };
 
 /* ── System prompt (hardcoded server-side) ──────────────────── */
-var SYSTEM_PROMPT = "You are a cannabis grow assessment expert. Score the following grow data using this 7-category rubric totaling 100 points: Lighting (20pts), Environment & VPD (20pts), Nutrition & Water Quality (15pts), Growing Medium & Root Zone (10pts), Genetics & Strain Fit (10pts), Pest/Disease/Contamination Risk (15pts), Harvest Readiness & Post-Harvest (10pts). Return a structured report with: overall score, letter grade, per-category scores, and top 3 actionable recommendations. Format cleanly using markdown with headers (##), bold, and bullet points.";
+var SYSTEM_PROMPT = "You are a cannabis cultivation education expert. Analyze the following grow data using a 7-category framework: Lighting, Environment & VPD, Nutrition & Water Quality, Growing Medium & Root Zone, Genetics & Strain Fit, Pest/Disease/Contamination Risk, Harvest Readiness & Post-Harvest. Do NOT use numerical scores, letter grades, pass/fail language, or any grading terminology. Instead, use growth-stage indicators for each category: Seedling (just starting), Vegetative (building foundations), Flowering (strong and developing), Harvest Ready (fully optimized). For each category, describe the current growth stage and identify specific optimizations. Provide a Growth Progress Snapshot summarizing how many of the 7 categories are fully optimized. Return a structured report with: Growth Progress Snapshot, per-category growth stage and analysis, and top 3 actionable recommendations with forward-looking language. If pH, runoff pH, or runoff EC/PPM fields are blank or missing, skip those sub-evaluations gracefully. If the grower specifies genetics type (Autoflower vs Photoperiod), tailor recommendations accordingly: for autoflowers, adjust light schedule advice (18/6 or 20/4 throughout, no flip needed), note shorter timelines, and consider DLI implications; for photoperiods, provide standard veg/flower transition guidance. Format cleanly using markdown with headers (##), bold, and bullet points.";
+
+/* ── Customer log (in-memory for dev) ────────────────────── */
+var customersHandler = require('./api/customers');
 
 http.createServer(function (req, res) {
   // --- API proxy endpoint ---
@@ -91,6 +94,37 @@ http.createServer(function (req, res) {
 
       apiReq.write(postData);
       apiReq.end();
+    });
+    return;
+  }
+
+  // --- Customer log API ---
+  if (req.url === '/api/customers' || req.url.indexOf('/api/customers?') === 0) {
+    let body = '';
+    req.on('data', function (chunk) { body += chunk; });
+    req.on('end', function () {
+      var fakeReq = {
+        method: req.method,
+        headers: req.headers,
+        body: body ? JSON.parse(body) : {},
+        query: Object.fromEntries(new URL(req.url, 'http://localhost').searchParams),
+        socket: req.socket
+      };
+      var fakeRes = {
+        statusCode: 200,
+        headers: {},
+        setHeader: function (k, v) { this.headers[k] = v; },
+        status: function (code) { this.statusCode = code; return this; },
+        json: function (data) {
+          res.writeHead(this.statusCode, Object.assign({ 'Content-Type': 'application/json' }, this.headers));
+          res.end(JSON.stringify(data));
+        },
+        send: function (data) {
+          res.writeHead(this.statusCode, this.headers);
+          res.end(data);
+        }
+      };
+      customersHandler(fakeReq, fakeRes);
     });
     return;
   }
