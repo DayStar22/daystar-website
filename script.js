@@ -239,18 +239,32 @@
      SCROLL REVEAL — IntersectionObserver
   ══════════════════════════════════════════════════════════ */
   if ('IntersectionObserver' in window) {
-    // General section / card reveal
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // General section / card reveal with stagger
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          // Stagger children within the same parent
+          var parent = entry.target.parentElement;
+          if (parent) {
+            var siblings = Array.from(parent.children).filter(function (c) {
+              return c.classList.contains('ds-reveal') || c.classList.contains('ds-reveal-left');
+            });
+            var idx = siblings.indexOf(entry.target);
+            if (idx > 0 && !reducedMotion) {
+              entry.target.style.transitionDelay = (idx * 0.1) + 's';
+            }
+          }
           entry.target.classList.add('ds-visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.15 });
 
+    // Standard fade-up elements
     document.querySelectorAll(
-      '.feature-card, .score-card, .blog-card, .testimonial-card, .stat-item, ' +
+      '.feature-card, .score-card, .blog-card, .stat-item, ' +
       '.compare-card, .process-step, .section-header, .pricing-card, .author-block, ' +
       '.book-callout, .faq-item, .payhip-block, .trust-badges'
     ).forEach(function (el) {
@@ -258,14 +272,33 @@
       revealObserver.observe(el);
     });
 
+    // Testimonials — fade in from left
+    document.querySelectorAll('.testimonial-card').forEach(function (el) {
+      el.classList.add('ds-reveal-left');
+      revealObserver.observe(el);
+    });
+
+    // CTA strips — fade in + gold underline draws
+    document.querySelectorAll('.cta-strip').forEach(function (el) {
+      el.classList.add('ds-reveal');
+      revealObserver.observe(el);
+    });
+
+    // Footer — simple fade in
+    var footer = document.querySelector('.footer');
+    if (footer) {
+      revealObserver.observe(footer);
+    }
+
     // Score bar fill animation
     var barObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var fills = entry.target.querySelectorAll('.rbar-fill, .mock-bar-fill');
-          fills.forEach(function (fill) {
+          fills.forEach(function (fill, i) {
             var target = fill.style.width;
             fill.style.width = '0';
+            fill.style.transitionDelay = (i * 0.15) + 's';
             requestAnimationFrame(function () {
               requestAnimationFrame(function () {
                 fill.style.width = target;
@@ -336,12 +369,14 @@
 
   /* ══════════════════════════════════════════════════════════
      HERO PARTICLES — Canvas (index.html only)
+     Particles drift outward from compass star center
   ══════════════════════════════════════════════════════════ */
   var particleCanvas = document.getElementById('hero-particles');
   if (particleCanvas) {
     var ctx = particleCanvas.getContext('2d');
     var particles = [];
-    var particleCount = 35;
+    var isMobile = window.innerWidth < 768;
+    var particleCount = isMobile ? 12 : 25;
 
     function resizeCanvas() {
       var hero = particleCanvas.parentElement;
@@ -349,17 +384,33 @@
       particleCanvas.height = hero.offsetHeight;
     }
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', function () {
+      resizeCanvas();
+      isMobile = window.innerWidth < 768;
+    });
+
+    function spawnParticle() {
+      // Spawn near center of hero (where the compass star is)
+      var cx = particleCanvas.width * (isMobile ? 0.5 : 0.72);
+      var cy = particleCanvas.height * 0.5;
+      var angle = Math.random() * Math.PI * 2;
+      var speed = Math.random() * 0.4 + 0.1;
+      return {
+        x: cx + (Math.random() - 0.5) * 60,
+        y: cy + (Math.random() - 0.5) * 60,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: Math.random() * 1.5 + 0.5,
+        a: Math.random() * 0.2 + 0.3,
+        life: 0,
+        maxLife: 300 + Math.random() * 300
+      };
+    }
 
     for (var i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * particleCanvas.width,
-        y: Math.random() * particleCanvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: -(Math.random() * 0.3 + 0.1),
-        r: Math.random() * 1.5 + 0.5,
-        a: Math.random() * 0.1 + 0.3
-      });
+      var p = spawnParticle();
+      p.life = Math.random() * p.maxLife; // stagger initial positions
+      particles.push(p);
     }
 
     function drawParticles() {
@@ -368,14 +419,20 @@
         var p = particles[j];
         p.x += p.vx;
         p.y += p.vy;
+        p.life++;
 
-        if (p.y < -10) { p.y = particleCanvas.height + 10; p.x = Math.random() * particleCanvas.width; }
-        if (p.x < -10) p.x = particleCanvas.width + 10;
-        if (p.x > particleCanvas.width + 10) p.x = -10;
+        // Fade out as particle ages
+        var lifeRatio = p.life / p.maxLife;
+        var alpha = p.a * (1 - lifeRatio);
+
+        if (p.life >= p.maxLife || alpha < 0.02) {
+          particles[j] = spawnParticle();
+          continue;
+        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 175, 55, ' + p.a + ')';
+        ctx.fillStyle = 'rgba(212, 175, 55, ' + alpha.toFixed(3) + ')';
         ctx.fill();
       }
       requestAnimationFrame(drawParticles);
@@ -492,6 +549,64 @@
         });
         ticking = true;
       }
+    });
+  })();
+
+
+  /* ══════════════════════════════════════════════════════════
+     SCROLL PROGRESS BAR — gold line at top of page
+  ══════════════════════════════════════════════════════════ */
+  (function initScrollProgress() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var bar = document.createElement('div');
+    bar.className = 'ds-scroll-progress';
+    document.body.appendChild(bar);
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight > 0) {
+            bar.style.width = ((scrollTop / docHeight) * 100) + '%';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+
+  /* ══════════════════════════════════════════════════════════
+     FLOATING ORGANIC LEAVES — desktop only
+  ══════════════════════════════════════════════════════════ */
+  (function initFloatingLeaves() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.innerWidth < 768) return;
+
+    var leafSVG = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M50 5C50 5 15 30 15 60C15 80 30 95 50 95C70 95 85 80 85 60C85 30 50 5 50 5ZM50 85C35 85 25 72 25 60C25 40 45 20 50 15C55 20 75 40 75 60C75 72 65 85 50 85Z"/><line x1="50" y1="15" x2="50" y2="85" stroke="currentColor" stroke-width="2" opacity="0.4"/></svg>';
+
+    var positions = [
+      { top: '15%', left: '5%', size: '60px', anim: 'leafFloat1', dur: '45s' },
+      { top: '55%', right: '3%', size: '50px', anim: 'leafFloat2', dur: '55s' },
+      { top: '75%', left: '8%', size: '40px', anim: 'leafFloat3', dur: '38s' }
+    ];
+
+    positions.forEach(function (pos) {
+      var leaf = document.createElement('div');
+      leaf.className = 'ds-floating-leaf';
+      leaf.innerHTML = leafSVG;
+      leaf.querySelector('svg').style.width = pos.size;
+      leaf.querySelector('svg').style.height = pos.size;
+      leaf.style.top = pos.top;
+      if (pos.left) leaf.style.left = pos.left;
+      if (pos.right) leaf.style.right = pos.right;
+      leaf.style.animation = pos.anim + ' ' + pos.dur + ' ease-in-out infinite';
+      document.body.appendChild(leaf);
     });
   })();
 
