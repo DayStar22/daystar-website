@@ -1,16 +1,19 @@
 const https = require('https');
 
 module.exports = function (req, res) {
-  // DEBUG: Log all available env var keys (not values) to diagnose missing ANTHROPIC_API_KEY
+  // DEBUG: Safe diagnostics for missing ANTHROPIC_API_KEY
+  const apiKey = process.env.ANTHROPIC_API_KEY || '';
   console.log('[DEBUG] Available process.env keys:', Object.keys(process.env).sort().join(', '));
-  console.log('[DEBUG] ANTHROPIC_API_KEY present:', !!process.env.ANTHROPIC_API_KEY);
+  console.log('[DEBUG] ANTHROPIC_API_KEY present:', apiKey.length > 0);
+  console.log('[DEBUG] ANTHROPIC_API_KEY length:', apiKey.length);
+  console.log('[DEBUG] ANTHROPIC_API_KEY starts with sk-ant-:', apiKey.startsWith('sk-ant-'));
+  console.log('[DEBUG] ANTHROPIC_API_KEY typeof:', typeof process.env.ANTHROPIC_API_KEY);
 
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     res.status(500).json({ error: 'API key not configured on server' });
     return;
