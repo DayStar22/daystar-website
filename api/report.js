@@ -26,7 +26,7 @@ module.exports = function (req, res) {
 
   /* ── Origin check ─────────────────────────────────────────── */
   var origin = (req.headers.origin || req.headers.referer || '');
-  var allowedOrigins = ['daystarconsulting.com', 'daystar-', 'localhost', '127.0.0.1'];
+  var allowedOrigins = ['daystarconsulting.com', 'daystar-', 'vercel.app', 'localhost', '127.0.0.1'];
   var originAllowed = allowedOrigins.some(function (o) { return origin.indexOf(o) !== -1; });
   if (origin && !originAllowed) {
     res.status(403).json({ error: 'Forbidden' });
